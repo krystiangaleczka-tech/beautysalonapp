@@ -174,7 +174,7 @@ NodeJS -->|pulls| CalendarSync
 
 ### Production
 - Blue-green deployments  
-- Automated CI/CD z GitHub Actions  
+- Automated CI/CD z GitHub Actions with 2 branches [main(for develop), test(for testing)]
 - Automatyczne migracje z rollback  
 - Monitoring + alerting  
 
@@ -227,8 +227,8 @@ NodeJS -->|pulls| CalendarSync
 5. **Service Duration**: End time must match start time + service duration
 6. **Future Bookings Only**: Appointments cannot be created in the past
 7. **Cancellation Policy**: 24-hour minimum notice for cancellations
-8. **Appointment Status**: Appointments can be marked as 'cancelled', 'rescheduled', etc.
-9. **Notification Status**: Notifications can be marked as 'sent', 'delivered', etc.
+8. **Appointment Status**: Appointments can be marked as 'anulowane', 'zmienione', etc.
+9. **Notification Status**: Notifications can be marked as 'wysłane', 'dostarczone', etc.
 10. **Booking only with valid email**: Only valid emails can book appointments.
 11. **Booking advance** : Booking can only be confirmed with at least 1 hour’s in advance by customer.
 12. **Booking only with valid phone number**: Only valid phone numbers can book appointments.
