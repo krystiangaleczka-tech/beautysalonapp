@@ -49,7 +49,7 @@
 - **Use Python** as the primary language.
 - **Follow PEP8**, use type hints, and format with `black`.
 - **Use `pydantic` for data validation**.
-- Use `FastAPI` for APIs and `SQLAlchemy` or `SQLModel` for ORM if applicable.
+### Backend Structure (Django + Django-Ninja)
 - Write **docstrings for every function** using the Google style:
   ```python
   def example():

@@ -4,9 +4,10 @@
 *Combining Context Engineering + Agent OS for Production-Ready Applications*
 
 ### System Philosophy
-Create **Instagram/Netflix/Amazon-quality** applications through structured AI development workflows that eliminate guesswork, reduce iterations, and deliver enterprise-grade code from day one.
+Create **Instagram/Netflix/quality** applications through structured AI development workflows that eliminate guesswork, reduce iterations, and deliver enterprise-grade code from day one.
 
 ---
+## USE INITIAL.MD FILE TO SPECIFIC TECHNOLOGY STACK AND APP DESCRIPTION
 
 ## 🎯 DUAL-SYSTEM ARCHITECTURE
 
@@ -269,4 +270,3 @@ All code follows patterns proven at scale by industry leaders.
 
 ---
 
-This integrated system ensures MarioBeautyApp achieves the same quality and reliability standards as applications built by Netflix, Instagram, Amazon, and other industry leaders, while maintaining the efficiency and speed benefits of AI-assisted development.
