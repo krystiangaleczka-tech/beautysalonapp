@@ -1,0 +1,28 @@
+-r base.txt
+
+# Development Tools
+django-debug-toolbar>=4.2
+ipython>=8.15
+ipdb>=0.13
+
+# Testing
+pytest>=7.4
+pytest-django>=4.5
+pytest-cov>=4.1
+factory-boy>=3.3
+faker>=19.6
+
+# Code Quality
+black>=23.7
+isort>=5.12
+flake8>=6.0
+mypy>=1.5
+
+# Development Server
+django-livereload-server>=0.4
+
+# Database Tools
+django-seed>=0.3
+
+# API Testing
+httpie>=3.2

@@ -1,0 +1,25 @@
+-r base.txt
+
+# Production Server
+gunicorn>=21.2
+uvicorn[standard]>=0.23  # For ASGI support
+
+# Database Connection Pooling
+psycopg2-binary>=2.9
+
+# Static Files & Media
+whitenoise>=6.5
+
+# Production Monitoring
+newrelic>=9.0  # APM monitoring
+prometheus-client>=0.17  # Metrics collection
+
+# Security
+django-csp>=3.7  # Content Security Policy
+django-secure>=1.0
+
+# Caching
+django-cachalot>=2.6  # ORM caching
+
+# Background Task Monitoring
+flower>=2.0  # Celery monitoring

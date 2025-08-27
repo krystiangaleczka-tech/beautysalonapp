@@ -1,0 +1,50 @@
+# Django Core Framework
+django==5.2
+django-ninja>=1.0
+pydantic>=2.5
+
+# Database
+psycopg2-binary>=2.9
+
+# Task Processing & Caching
+celery[redis]>=5.3
+django-redis>=5.4
+redis>=5.0
+
+# Authentication & Security
+djangorestframework-simplejwt>=5.3
+django-cors-headers>=4.3
+bleach>=6.1
+
+# Image Processing
+pillow>=10.1
+
+# Configuration & Environment
+python-decouple>=3.8
+
+# Monitoring & Logging
+sentry-sdk[django]>=1.38
+
+# Development Utilities
+django-extensions>=3.2
+
+# API Documentation
+djangorestframework>=3.14
+
+# Timezone Support
+pytz>=2023.3
+
+# Validation & Serialization
+marshmallow>=3.20
+
+# Communication APIs
+twilio>=8.10  # SMS notifications
+sendgrid>=6.10  # Email notifications
+
+# Payment Processing
+stripe>=7.0
+
+# Calendar Integration
+google-api-python-client>=2.100
+google-auth-httplib2>=0.2
+google-auth-oauthlib>=1.1
