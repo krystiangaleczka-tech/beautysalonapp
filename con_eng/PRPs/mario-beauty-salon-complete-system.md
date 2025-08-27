@@ -85,7 +85,7 @@ Complete salon management platform with client management, intelligent appointme
 ### Current Codebase Tree
 ```bash
 beautysalonapp/
-├── agentos/                    # Agent OS development system
+├── .agent-os/                  # Agent OS development system
 │   ├── setup/
 │   │   ├── base.sh            # Development environment setup
 │   │   └── project.sh         # Project initialization
