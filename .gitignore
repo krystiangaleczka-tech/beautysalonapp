@@ -1,22 +1,21 @@
-# Dependencies
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Node.js
 node_modules/
-frontend/node_modules/
-backend/__pycache__/
-backend/venv/
-backend/.venv/
 
-# Build outputs
-frontend/dist/
-frontend/build/
-backend/staticfiles/
-backend/media/
-
-# Environment variables
+# Environment files
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.production
 
 # IDE
 .vscode/
@@ -24,28 +23,16 @@ backend/media/
 *.swp
 *.swo
 
-# OS
+# macOS
 .DS_Store
-Thumbs.db
 
 # Logs
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # Database
-*.sqlite3
-*.db
+db.sqlite3
 
-# Cache
-.cache/
-.parcel-cache/
-
-# Coverage reports
-coverage/
-.nyc_output/
-
-# Temporary files
-*.tmp
-*.temp
+# Build artifacts
+dist/
+build/
+staticfiles/

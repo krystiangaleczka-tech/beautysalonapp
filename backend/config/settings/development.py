@@ -34,7 +34,6 @@ if config('DB_NAME', default=None):
 # Development-specific apps
 INSTALLED_APPS += [
     'debug_toolbar',
-    'django_extensions',
 ]
 
 # Development middleware

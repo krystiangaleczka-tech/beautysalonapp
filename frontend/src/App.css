@@ -1,0 +1,23 @@
+/* App Component Styles */
+.App {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+/* Custom animations for the beauty salon theme */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.App header {
+  animation: fadeIn 0.8s ease-in-out;
+}

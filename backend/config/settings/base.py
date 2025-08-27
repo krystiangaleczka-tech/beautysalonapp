@@ -94,8 +94,8 @@ DATABASES = {
     }
 }
 
-# Custom User Model
-AUTH_USER_MODEL = 'authentication.SalonUser'
+# Custom User Model - Will be enabled after creating authentication models
+# AUTH_USER_MODEL = 'authentication.SalonUser'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
