@@ -32,12 +32,12 @@ class ClientQuerySet(models.QuerySet):
             return self
             
         return self.filter(
-            Q(user__first_name__icontains=query) |
+            Q(user__first_name__icontains=query) |  # type: ignore
             Q(user__last_name__icontains=query) |
             Q(user__email__icontains=query) |
             Q(phone_number__icontains=query) |
             Q(notes__icontains=query)
-        )  # type: ignore
+        )
     
     def by_tier(self, tier):
         """
@@ -68,10 +68,10 @@ class ClientQuerySet(models.QuerySet):
             QuerySet: Clients who qualify as VIP
         """
         return self.filter(
-            Q(total_visits__gte=10) |
+            Q(total_visits__gte=10) |  # type: ignore
             Q(total_spent__gte=500) |
             Q(loyalty_points__gte=1000)
-        )  # type: ignore
+        )
     
     def active_clients(self, days=180):
         """
