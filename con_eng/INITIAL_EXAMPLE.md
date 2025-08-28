@@ -1,7 +1,11 @@
 # INITIAL_EXAMPLE.md - MarioBeautyApp
 
 ## FEATURE:
+<<<<<<< HEAD
 Build a comprehensive beauty salon management application using Django 5.2 LTS with Django-Ninja for API endpoints, React 18 with TypeScript 5.9 for the frontend, and PostgreSQL 17 for data persistence. The application should handle client management with detailed preference tracking, appointment scheduling with conflict prevention, automated SMS/email notifications via Celery background tasks, inventory management with auto-reorder alerts, staff management with performance analytics, and a real-time dashboard showing salon KPIs. The system must support multi-user authentication with role-based permissions (owner, manager, stylist, receptionist), integrate with Redis 7 for caching and session management, and be fully containerized with Docker Compose for easy deployment. The frontend should provide drag-and-drop appointment booking, client search with autocomplete, service customization with color formula tracking, and responsive design optimized for both desktop and tablet use in salon environments. Target: 4-person beauty salon team with future AI integration capabilities for client preference learning and intelligent scheduling recommendations.
+=======
+Build a comprehensive beauty salon management application using Django 5.2 LTS with Django-Ninja for API endpoints, React 19 with TypeScript 5.9 for the frontend, and PostgreSQL 17 for data persistence. The application should handle client management with detailed preference tracking, appointment scheduling with conflict prevention, automated SMS/email notifications via Celery background tasks, inventory management with auto-reorder alerts, staff management with performance analytics, and a real-time dashboard showing salon KPIs. The system must support multi-user authentication with role-based permissions (owner, manager, stylist, receptionist), integrate with Redis 7 for caching and session management, and be fully containerized with Docker Compose for easy deployment. The frontend should provide drag-and-drop appointment booking, client search with autocomplete, service customization with color formula tracking, and responsive design optimized for both desktop and tablet use in salon environments. Target: 4-person beauty salon team with future AI integration capabilities for client preference learning and intelligent scheduling recommendations.
+>>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
 
 ## EXAMPLES:
 ### Backend Structure (Django + Django-Ninja)
@@ -19,7 +23,11 @@ Build a comprehensive beauty salon management application using Django 5.2 LTS w
 - `frontend/src/types/api.ts` - TypeScript interfaces matching Django-Ninja Pydantic schemas
 - `frontend/src/hooks/useAppointments.ts` - React hooks for API state management
 - `frontend/src/utils/dateHelpers.ts` - Utility functions for appointment scheduling logic
+<<<<<<< HEAD
 - `frontend/package.json` - Node.js dependencies including React 18, TypeScript 5.9, Tailwind CSS
+=======
+- `frontend/package.json` - Node.js dependencies including React 19, TypeScript 5.9, Tailwind CSS
+>>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
 - `frontend/Dockerfile` - React development and production build configuration
 
 ### Configuration Files
@@ -32,7 +40,11 @@ Build a comprehensive beauty salon management application using Django 5.2 LTS w
 ### Framework Documentation
 - Django 5.2 LTS Documentation: https://docs.djangoproject.com/en/5.2/
 - Django-Ninja Documentation: https://django-ninja.dev/
+<<<<<<< HEAD
 - React 18 Documentation: https://react.dev/
+=======
+- React 19 Documentation: https://react.dev/
+>>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
 - TypeScript 5.9 Handbook: https://www.typescriptlang.org/docs/
 - PostgreSQL 17 Documentation: https://www.postgresql.org/docs/17/
 

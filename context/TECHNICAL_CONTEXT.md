@@ -15,9 +15,15 @@
 - Django-Ninja provides modern OpenAPI documentation
 - Long-term support ensures stability for enterprise clients
 
+<<<<<<< HEAD
 #### Frontend: React 18 + TypeScript 5.9 + Tailwind CSS
 **Rationale**:
 - React 18 stable features with excellent ecosystem compatibility
+=======
+#### Frontend: React 19 + TypeScript 5.9 + Tailwind CSS
+**Rationale**:
+- React 19 Server Components for optimal performance
+>>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
 - TypeScript ensures type safety for complex booking logic
 - Tailwind CSS enables rapid UI development matching beauty industry aesthetics
 - Component reusability across web and potential mobile apps

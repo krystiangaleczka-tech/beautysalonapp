@@ -1,7 +1,11 @@
 name: "Mario Beauty Salon Complete System PRP v1 - Enterprise Implementation"
 description: |
   Complete enterprise-grade beauty salon management system implementation for Mario's 4-person salon team 
+<<<<<<< HEAD
   following Django 5.2 LTS + React 18 + PostgreSQL 17 architecture with AI-ready foundation.
+=======
+  following Django 5.2 LTS + React 19 + PostgreSQL 17 architecture with AI-ready foundation.
+>>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
 
 ## Purpose
 Implement a production-ready beauty salon management application that transforms Mario's salon operations from manual processes to intelligent, automated workflows with enterprise-level security, performance, and scalability.
@@ -61,7 +65,11 @@ Complete salon management platform with client management, intelligent appointme
   critical: Async support and Pydantic integration for type safety
 
 - url: https://react.dev/
+<<<<<<< HEAD
   why: React 18 stable features and modern patterns
+=======
+  why: React 19 concurrent features and modern patterns
+>>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
   section: Hooks, State management, Performance optimization
 
 - url: https://www.typescriptlang.org/docs/
@@ -177,7 +185,11 @@ beautysalonapp/
 │   │   └── production.txt    # Production dependencies
 │   ├── manage.py             # Django management
 │   └── pytest.ini           # Testing configuration
+<<<<<<< HEAD
 ├── frontend/                 # React 18 + TypeScript Frontend
+=======
+├── frontend/                 # React 19 + TypeScript Frontend
+>>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── ui/           # Reusable UI components
@@ -280,7 +292,11 @@ beautysalonapp/
 # GiST indexes for time range overlaps
 # JSONB fields for client preferences and service history
 
+<<<<<<< HEAD
 # CRITICAL: React 18 + TypeScript 5.9
+=======
+# CRITICAL: React 19 + TypeScript 5.9
+>>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
 # Use React Query v5 for server state management
 # Implement optimistic updates for better UX
 # TypeScript strict mode for type safety
@@ -299,6 +315,7 @@ beautysalonapp/
 
 ## Implementation Blueprint
 
+<<<<<<< HEAD
 ### Atomic Micro-Tasks (Implementation Order)
 
 ```yaml
@@ -580,11 +597,129 @@ Task 14.3 - Monitoring Setup:
   IMPLEMENT: Error tracking with Sentry
   CREATE: Performance monitoring
   TEST: Monitoring alerts work
+=======
+### List of Tasks (Implementation Order)
+
+```yaml
+Task 1 - Project Foundation Setup:
+  CREATE: Project structure and development environment
+  EXECUTE: Docker Compose configuration with PostgreSQL 17, Redis 7, Django, React
+  CREATE: Backend requirements.txt with Django 5.2, django-ninja, celery dependencies
+  CREATE: Frontend package.json with React 19, TypeScript 5.9, Vite 5
+  CONFIGURE: Environment variables and settings structure
+  VALIDATE: All services start successfully and communicate
+
+Task 2 - Context Engineering Documentation:
+  CREATE: context/PROJECT_CONTEXT.md with Mario's business model and success metrics
+  CREATE: context/TECHNICAL_CONTEXT.md with architecture decisions and performance requirements
+  CREATE: context/FEATURE_CONTEXT.md with user journeys and business rules
+  DOCUMENT: All enterprise quality requirements and constraints
+
+Task 3 - Django Backend Foundation:
+  CREATE: config/settings/ with base, development, production configurations
+  CREATE: apps/core/ with base models, utilities, and common patterns
+  CREATE: apps/authentication/ with SalonUser model and role-based permissions
+  CONFIGURE: Database settings with connection pooling and timezone handling
+  MIGRATE: Initial database schema with proper indexes
+
+Task 4 - Client Management System:
+  CREATE: apps/clients/models.py with AI-enhanced client profiles
+  CREATE: apps/clients/schemas.py with Pydantic validation schemas
+  CREATE: apps/clients/views.py with Django-Ninja CRUD APIs
+  CREATE: apps/clients/services.py with business logic and preference tracking
+  IMPLEMENT: Intelligent client search with autocomplete functionality
+  TEST: Client CRUD operations with comprehensive test coverage
+
+Task 5 - Service and Staff Management:
+  CREATE: apps/services/models.py with service categories and pricing
+  CREATE: apps/staff/models.py with staff profiles, schedules, and specialties
+  IMPLEMENT: Staff availability calculation and working hours management
+  CREATE: Service assignment and staff specialization logic
+  TEST: Service and staff management functionality
+
+Task 6 - Advanced Appointment System:
+  CREATE: apps/appointments/models.py with conflict prevention constraints
+  IMPLEMENT: Real-time availability checking with buffer time calculation
+  CREATE: Appointment scheduling logic with business rule validation
+  IMPLEMENT: Google Calendar bi-directional synchronization
+  CREATE: Appointment status management and lifecycle tracking
+  TEST: Comprehensive appointment scenarios including edge cases
+
+Task 7 - Multi-Channel Notification System:
+  CREATE: apps/notifications/models.py with delivery tracking
+  IMPLEMENT: SMS notification service via Twilio integration
+  IMPLEMENT: Email notification service via SendGrid integration
+  CREATE: Celery background tasks with retry mechanisms
+  IMPLEMENT: Notification templates and personalization
+  TEST: Notification delivery with failure handling
+
+Task 8 - Inventory Management:
+  CREATE: apps/inventory/models.py with predictive analytics fields
+  IMPLEMENT: Stock level monitoring and auto-reorder alerts
+  CREATE: Usage tracking and consumption analytics
+  IMPLEMENT: Supplier management and purchase order generation
+  TEST: Inventory workflows and alert systems
+
+Task 9 - React Frontend Foundation:
+  CREATE: TypeScript interfaces matching Django models
+  SETUP: React Query for server state management
+  CREATE: API client with authentication and error handling
+  IMPLEMENT: Routing and layout components
+  CREATE: Reusable UI components with Tailwind CSS
+
+Task 10 - Appointment Booking Interface:
+  CREATE: AppointmentBooking.tsx with step-by-step wizard
+  IMPLEMENT: Real-time availability checking with debounced API calls
+  CREATE: Drag-and-drop calendar interface
+  IMPLEMENT: Service selection with duration and pricing display
+  CREATE: Staff selection with specialty matching
+  TEST: Complete booking flow with validation
+
+Task 11 - Client Management Interface:
+  CREATE: ClientSearch.tsx with intelligent autocomplete
+  IMPLEMENT: Client profile management with preference history
+  CREATE: Client history view with service tracking
+  IMPLEMENT: Quick client creation during booking process
+  TEST: Client management workflows
+
+Task 12 - Staff and Admin Dashboards:
+  CREATE: Staff schedule management interface
+  IMPLEMENT: Performance analytics and KPI tracking
+  CREATE: Inventory management interface with alerts
+  IMPLEMENT: Real-time dashboard with live updates
+  CREATE: Reporting and analytics views
+  TEST: Administrative functionality
+
+Task 13 - Security and Performance Optimization:
+  IMPLEMENT: GDPR compliance features (data export, deletion)
+  CREATE: Rate limiting and input validation
+  OPTIMIZE: Database queries and API performance
+  IMPLEMENT: Caching strategy with Redis
+  CREATE: Security headers and HTTPS enforcement
+  TEST: Security and performance requirements
+
+Task 14 - Production Deployment Setup:
+  CREATE: Production Docker configurations
+  SETUP: Nginx reverse proxy with SSL termination
+  CONFIGURE: Environment-specific settings and secrets
+  IMPLEMENT: Database backup and monitoring
+  CREATE: CI/CD pipeline with quality gates
+  TEST: Production deployment and scaling
+
+Task 15 - AI Integration Foundation:
+  IMPLEMENT: Client preference learning algorithms
+  CREATE: Service recommendation engine
+  IMPLEMENT: Optimal scheduling suggestions
+  CREATE: Predictive analytics for inventory
+  SETUP: Data collection for future AI enhancements
+  TEST: AI features and recommendation accuracy
+>>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
 ```
 
 ### Per Task Pseudocode Examples
 
 ```python
+<<<<<<< HEAD
 # Task 1.1: Backend Virtual Environment Setup
 def setup_backend_virtual_environment():
     """Create isolated Python environment for Django backend"""
@@ -966,6 +1101,102 @@ export function AppointmentBooking() {
     
     with open("frontend/src/components/appointments/AppointmentBooking.tsx", "w") as f:
         f.write(component_code)
+=======
+# Task 3: Django Backend Foundation
+def setup_django_backend():
+    # PATTERN: Environment-specific settings
+    # base.py - Common settings
+    BASE_SETTINGS = {
+        'INSTALLED_APPS': [
+            'django.contrib.admin',
+            'django.contrib.auth',
+            'django.contrib.contenttypes',
+            'django.contrib.sessions',
+            'ninja',
+            'corsheaders',
+            'apps.core',
+            'apps.authentication',
+            'apps.clients',
+            'apps.appointments',
+        ],
+        'DATABASES': {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'CONN_MAX_AGE': 600,
+                'OPTIONS': {'MAX_CONNS': 20}
+            }
+        },
+        'USE_TZ': True,
+        'TIME_ZONE': 'Europe/Warsaw',
+    }
+
+# Task 6: Advanced Appointment System
+async def create_appointment_with_validation():
+    # CRITICAL: Atomic transaction for conflict prevention
+    async with transaction.atomic():
+        # Validate availability with buffer time
+        is_available = await check_availability_with_buffer(
+            stylist_id=data.stylist_id,
+            start_time=data.start_time,
+            duration=service.duration,
+            buffer_minutes=15
+        )
+        
+        if not is_available:
+            raise ConflictError("Time slot not available")
+        
+        # Create appointment with business rules
+        appointment = await Appointment.objects.acreate(
+            client=client,
+            stylist=stylist,
+            service=service,
+            start_time=data.start_time,
+            end_time=data.start_time + service.duration,
+            total_price=calculate_price(service, client),
+            status='pending'
+        )
+        
+        # Trigger background tasks
+        send_appointment_confirmation.delay(appointment.id)
+        sync_google_calendar.delay(appointment.id)
+        
+        return appointment
+
+# Task 10: React Appointment Booking
+function AppointmentBooking() {
+    // PATTERN: React Query for server state
+    const { data: services } = useQuery({
+        queryKey: ['services'],
+        queryFn: api.services.getAll,
+        staleTime: 5 * 60 * 1000, // 5 minutes
+    });
+    
+    // PATTERN: Optimistic updates
+    const createAppointment = useMutation({
+        mutationFn: api.appointments.create,
+        onMutate: async (newAppointment) => {
+            await queryClient.cancelQueries(['appointments']);
+            const previous = queryClient.getQueryData(['appointments']);
+            
+            // Optimistically update
+            queryClient.setQueryData(['appointments'], old => [
+                ...old,
+                { ...newAppointment, id: 'temp-' + Date.now() }
+            ]);
+            
+            return { previous };
+        },
+        onError: (err, vars, context) => {
+            queryClient.setQueryData(['appointments'], context.previous);
+            toast.error('Booking failed. Please try again.');
+        },
+        onSuccess: () => {
+            toast.success('Appointment booked successfully!');
+            queryClient.invalidateQueries(['appointments']);
+        }
+    });
+}
+>>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
 ```
 
 ### Integration Points
