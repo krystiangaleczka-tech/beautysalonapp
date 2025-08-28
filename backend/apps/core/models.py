@@ -31,7 +31,7 @@ class SoftDeleteModel(models.Model):
     Records are marked as deleted rather than being removed from the database.
     """
     is_deleted = models.BooleanField(
-        default=False,
+        default=False,  # type: ignore
         help_text="Indicates if the record is soft deleted"
     )
     deleted_at = models.DateTimeField(
@@ -51,6 +51,7 @@ class SoftDeleteModel(models.Model):
         self.is_deleted = True
         self.deleted_at = timezone.now()
         self.save(using=using)
+        return 1, {self._meta.label: 1}  # type: ignore # Return expected tuple format
 
     def restore(self):
         """
@@ -66,7 +67,7 @@ class BaseModel(TimeStampedModel, SoftDeleteModel):
     Base model combining timestamp and soft delete functionality.
     Most salon models should inherit from this unless specific behavior is needed.
     """
-    class Meta:
+    class Meta:  # type: ignore
         abstract = True
 
 

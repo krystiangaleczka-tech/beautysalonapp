@@ -48,7 +48,7 @@ class SalonUser(AbstractUser, TimeStampedModel, SalonModelMixin):
     )
     
     is_active_staff = models.BooleanField(
-        default=True,
+        default=True,  # type: ignore
         help_text="Indicates if the user is currently active as staff member"
     )
     
@@ -82,7 +82,7 @@ class SalonUser(AbstractUser, TimeStampedModel, SalonModelMixin):
         help_text="Profile photo for staff directory"
     )
 
-    class Meta:
+    class Meta:  # type: ignore
         db_table = 'salon_users'
         verbose_name = _('Salon User')
         verbose_name_plural = _('Salon Users')
@@ -93,14 +93,14 @@ class SalonUser(AbstractUser, TimeStampedModel, SalonModelMixin):
         ]
 
     def __str__(self):
-        return f"{self.get_full_name()} ({self.get_role_display()})"
+        return f"{self.get_full_name()} ({self.get_role_display()})"  # type: ignore
 
-    def get_full_name(self):
+    def get_full_name(self) -> str:
         """
         Return the user's full name with fallback to username.
         """
         full_name = f"{self.first_name} {self.last_name}".strip()
-        return full_name if full_name else self.username
+        return full_name if full_name else str(self.username)
 
     @property
     def is_owner(self):
@@ -157,7 +157,7 @@ class SalonUser(AbstractUser, TimeStampedModel, SalonModelMixin):
         """
         if not self.specialties:
             return []
-        return [specialty.strip() for specialty in self.specialties.split(',')]
+        return [specialty.strip() for specialty in str(self.specialties).split(',')]
 
     def add_specialty(self, specialty):
         """
@@ -225,10 +225,10 @@ class UserProfile(TimeStampedModel, SalonModelMixin):
         help_text="User's timezone for scheduling"
     )
 
-    class Meta:
+    class Meta:  # type: ignore
         db_table = 'salon_user_profiles'
         verbose_name = _('User Profile')
         verbose_name_plural = _('User Profiles')
 
     def __str__(self):
-        return f"Profile for {self.user.get_full_name()}"
+        return f"Profile for {self.user.get_full_name()}"  # type: ignore
