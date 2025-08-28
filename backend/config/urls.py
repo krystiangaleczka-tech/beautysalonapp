@@ -24,7 +24,7 @@ api = NinjaAPI(
     title="Mario Beauty Salon API",
     description="Enterprise-grade beauty salon management system API",
     version="1.0.0",
-    docs_url="/api/docs/",
+    docs_url="/docs/",
 )
 
 # Register API routers
@@ -36,6 +36,29 @@ api.add_router("/staff", staff_router, tags=["Staff"])
 api.add_router("/notifications", notifications_router, tags=["Notifications"])
 api.add_router("/inventory", inventory_router, tags=["Inventory"])
 api.add_router("/analytics", analytics_router, tags=["Analytics"])
+
+# Add root API endpoint
+@api.get("/", tags=["API Root"])
+def api_root(request):
+    """
+    Mario Beauty Salon API Root
+    Welcome to the Mario Beauty Salon Management System API.
+    """
+    return {
+        "message": "Welcome to Mario Beauty Salon API",
+        "version": "1.0.0",
+        "documentation": "/api/docs/",
+        "available_endpoints": {
+            "authentication": "/api/auth/",
+            "clients": "/api/clients/",
+            "appointments": "/api/appointments/",
+            "services": "/api/services/",
+            "staff": "/api/staff/",
+            "notifications": "/api/notifications/",
+            "inventory": "/api/inventory/",
+            "analytics": "/api/analytics/"
+        }
+    }
 
 urlpatterns = [
     path('admin/', admin.site.urls),
