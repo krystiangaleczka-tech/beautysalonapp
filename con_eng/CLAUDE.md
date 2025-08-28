@@ -29,7 +29,6 @@
     - `tools.py` - Tool functions used by the agent 
     - `prompts.py` - System prompts
 - **Use clear, consistent imports** (prefer relative imports within packages).
-- **Use clear, consistent imports** (prefer relative imports within packages).
 - **Use python_dotenv and load_env()** for environment variables.
 
 ### 🧪 Testing & Reliability
@@ -41,9 +40,11 @@
     - 1 edge case
     - 1 failure case
 
-### ✅ Task Completion
-- **Mark completed tasks in `TASK.md`** immediately after finishing them.
-- Add new sub-tasks or TODOs discovered during development to `TASK.md` under a “Discovered During Work” section.
+### ✅ Development Workflow
+- **All tasks are defined in**: `con_eng/PRPs/mario-beauty-salon-complete-system.md`
+- **Follow PRP micro-task sequence** for structured development
+- **Commit after each micro-task** with pattern: `feat: Task X.Y - [Description]`
+- **Use PRP as single source of truth** for all development tasks
 
 ### 📎 Style & Conventions
 - **Use Python** as the primary language.

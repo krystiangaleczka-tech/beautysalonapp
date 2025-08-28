@@ -190,27 +190,16 @@ The application follows a beautiful, modern design system specifically crafted f
 
 ## 🔧 Development Workflow
 
-### Task-Based Development
-This project follows a structured task-based development approach:
+### PRP-Driven Development
+This project follows the **Product Requirements Planning (PRP)** methodology:
 
-1. **Task 1**: ✅ Project Foundation Setup (Current)
-2. **Task 2**: Context Engineering Documentation
-3. **Task 3**: Django Backend Foundation
-4. **Task 4**: Client Management System
-5. **Task 5**: Service and Staff Management
-6. **Task 6**: Advanced Appointment System
-7. **Task 7**: Multi-Channel Notification System
-8. **Task 8**: Inventory Management
-9. **Task 9**: React Frontend Foundation
-10. **Task 10**: Appointment Booking Interface
-11. **Task 11**: Client Management Interface
-12. **Task 12**: Staff and Admin Dashboards
-13. **Task 13**: Security and Performance Optimization
-14. **Task 14**: Production Deployment Setup
-15. **Task 15**: AI Integration Foundation
+- **All tasks are defined in**: `con_eng/PRPs/mario-beauty-salon-complete-system.md`
+- **Micro-task approach**: Each major feature broken into atomic, verifiable steps
+- **Sequential execution**: Tasks must be completed in PRP-defined order
+- **Quality gates**: Each micro-task includes validation requirements
 
 ### Git Workflow
-- **Commits**: Following pattern `feat: Task X - [Description]`
+- **Commits**: Following pattern `feat: Task X.Y - [Description]` after each micro-task
 - **Branches**: Feature branches with mandatory code review
 - **Quality Gates**: 95% test coverage, <200ms response times
 

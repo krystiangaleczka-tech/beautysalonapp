@@ -16,6 +16,7 @@ Implement a production-ready beauty salon management application that transforms
 3. **Validation Loops**: 95% test coverage with comprehensive quality gates
 4. **Progressive Success**: Iterative development with continuous validation
 5. **Global rules**: Follow enterprise development system principles
+6. **Mandatory Git Workflow**: Every completed micro-task MUST be committed to Git with descriptive message following pattern 'feat: Task X.Y - [Micro-Task Description]'
 
 ---
 
@@ -317,6 +318,22 @@ beautysalonapp/
 
 <<<<<<< HEAD
 ### Atomic Micro-Tasks (Implementation Order)
+
+**🔸 MANDATORY GIT WORKFLOW 🔸**
+**After completing EVERY micro-task below, you MUST:**
+1. `git add .`
+2. `git commit -m "feat: Task X.Y - [Micro-Task Description]"`  
+3. `git push origin main`
+
+**Example:** `git commit -m "feat: Task 4.1 - Create Client Model Structure"`
+
+**This ensures:**
+- Granular version control for each atomic change
+- Easy rollback to any micro-task completion state
+- Professional development workflow with detailed commit history
+- Compliance with enterprise Git standards
+
+---
 
 ```yaml
 # Phase 1: Project Foundation Setup (COMPLETED)
