@@ -15,44 +15,35 @@ class ClientCreateSchema(BaseModel):
     Used for POST /api/clients/ requests.
     """
     first_name: str = Field(
-        ...,
         min_length=1,
         max_length=50,
-        description="Client's first name",
-        example="Maria"
+        description="Client's first name"
     )
     
     last_name: str = Field(
-        ...,
         min_length=1,
         max_length=50,
-        description="Client's last name",
-        example="Rodriguez"
+        description="Client's last name"
     )
     
     email: EmailStr = Field(
-        ...,
-        description="Client's email address for notifications",
-        example="maria.rodriguez@email.com"
+        description="Client's email address for notifications"
     )
     
     phone: Optional[str] = Field(
-        None,
+        default=None,
         max_length=15,
-        description="Client's phone number in international format",
-        example="+1234567890"
+        description="Client's phone number in international format"
     )
     
     allergies: Optional[str] = Field(
-        None,
-        description="Any allergies or sensitivities to products",
-        example="Allergic to shellfish-based products"
+        default=None,
+        description="Any allergies or sensitivities to products"
     )
     
     notes: Optional[str] = Field(
-        None,
-        description="Additional notes about the client",
-        example="Prefers morning appointments, sensitive skin"
+        default=None,
+        description="Additional notes about the client"
     )
     
     @validator('phone')
@@ -96,44 +87,38 @@ class ClientUpdateSchema(BaseModel):
     All fields are optional for partial updates.
     """
     first_name: Optional[str] = Field(
-        None,
+        default=None,
         min_length=1,
         max_length=50,
-        description="Client's first name",
-        example="Maria"
+        description="Client's first name"
     )
     
     last_name: Optional[str] = Field(
-        None,
+        default=None,
         min_length=1,
         max_length=50,
-        description="Client's last name",
-        example="Rodriguez"
+        description="Client's last name"
     )
     
     email: Optional[EmailStr] = Field(
-        None,
-        description="Client's email address for notifications",
-        example="maria.rodriguez@newemail.com"
+        default=None,
+        description="Client's email address for notifications"
     )
     
     phone: Optional[str] = Field(
-        None,
+        default=None,
         max_length=15,
-        description="Client's phone number in international format",
-        example="+1234567890"
+        description="Client's phone number in international format"
     )
     
     allergies: Optional[str] = Field(
-        None,
-        description="Any allergies or sensitivities to products",
-        example="Allergic to shellfish-based products"
+        default=None,
+        description="Any allergies or sensitivities to products"
     )
     
     notes: Optional[str] = Field(
-        None,
-        description="Additional notes about the client",
-        example="Prefers morning appointments, sensitive skin"
+        default=None,
+        description="Additional notes about the client"
     )
     
     @validator('phone')
@@ -174,65 +159,16 @@ class ClientResponseSchema(BaseModel):
     Schema for client API responses.
     Used for GET requests and successful POST/PUT responses.
     """
-    id: int = Field(
-        ...,
-        description="Unique client identifier",
-        example=1
-    )
-    
-    first_name: str = Field(
-        ...,
-        description="Client's first name",
-        example="Maria"
-    )
-    
-    last_name: str = Field(
-        ...,
-        description="Client's last name",
-        example="Rodriguez"
-    )
-    
-    email: str = Field(
-        ...,
-        description="Client's email address",
-        example="maria.rodriguez@email.com"
-    )
-    
-    phone: Optional[str] = Field(
-        None,
-        description="Client's phone number",
-        example="+1234567890"
-    )
-    
-    allergies: Optional[str] = Field(
-        None,
-        description="Client's allergies and sensitivities",
-        example="Allergic to shellfish-based products"
-    )
-    
-    notes: Optional[str] = Field(
-        None,
-        description="Additional notes about the client",
-        example="Prefers morning appointments, sensitive skin"
-    )
-    
-    full_name: str = Field(
-        ...,
-        description="Client's full name (computed field)",
-        example="Maria Rodriguez"
-    )
-    
-    created_at: datetime = Field(
-        ...,
-        description="When the client record was created",
-        example="2024-01-15T10:30:00Z"
-    )
-    
-    updated_at: datetime = Field(
-        ...,
-        description="When the client record was last updated",
-        example="2024-01-20T14:45:00Z"
-    )
+    id: int = Field(description="Unique client identifier")
+    first_name: str = Field(description="Client's first name")
+    last_name: str = Field(description="Client's last name")
+    email: str = Field(description="Client's email address")
+    phone: Optional[str] = Field(default=None, description="Client's phone number")
+    allergies: Optional[str] = Field(default=None, description="Client's allergies and sensitivities")
+    notes: Optional[str] = Field(default=None, description="Additional notes about the client")
+    full_name: str = Field(description="Client's full name (computed field)")
+    created_at: datetime = Field(description="When the client record was created")
+    updated_at: datetime = Field(description="When the client record was last updated")
     
     class Config:
         from_attributes = True  # Enable ORM mode for Django model conversion
@@ -257,34 +193,11 @@ class ClientListResponseSchema(BaseModel):
     Schema for paginated client list responses.
     Used for GET /api/clients/ with pagination.
     """
-    clients: list[ClientResponseSchema] = Field(
-        ...,
-        description="List of clients for current page"
-    )
-    
-    total: int = Field(
-        ...,
-        description="Total number of clients",
-        example=150
-    )
-    
-    page: int = Field(
-        ...,
-        description="Current page number",
-        example=1
-    )
-    
-    page_size: int = Field(
-        ...,
-        description="Number of clients per page",
-        example=20
-    )
-    
-    total_pages: int = Field(
-        ...,
-        description="Total number of pages",
-        example=8
-    )
+    clients: list[ClientResponseSchema] = Field(description="List of clients for current page")
+    total: int = Field(description="Total number of clients")
+    page: int = Field(description="Current page number")
+    page_size: int = Field(description="Number of clients per page")
+    total_pages: int = Field(description="Total number of pages")
     
     class Config:
         json_schema_extra = {
@@ -317,36 +230,31 @@ class ClientSearchSchema(BaseModel):
     Used for GET /api/clients/search/ query parameters.
     """
     query: Optional[str] = Field(
-        None,
-        description="Search query for client name or email",
-        example="maria"
+        default=None,
+        description="Search query for client name or email"
     )
     
     email: Optional[str] = Field(
-        None,
-        description="Filter by exact email address",
-        example="maria@email.com"
+        default=None,
+        description="Filter by exact email address"
     )
     
     phone: Optional[str] = Field(
-        None,
-        description="Filter by phone number",
-        example="+1234567890"
+        default=None,
+        description="Filter by phone number"
     )
     
     page: int = Field(
-        1,
+        default=1,
         ge=1,
-        description="Page number for pagination",
-        example=1
+        description="Page number for pagination"
     )
     
     page_size: int = Field(
-        20,
+        default=20,
         ge=1,
         le=100,
-        description="Number of results per page (max 100)",
-        example=20
+        description="Number of results per page (max 100)"
     )
     
     class Config:
