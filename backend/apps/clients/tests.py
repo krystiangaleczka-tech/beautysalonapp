@@ -239,11 +239,12 @@ class ClientSchemaTestCase(TestCase):
     
     def test_client_search_schema_pagination(self):
         """Test ClientSearchSchema pagination validation."""
-        search_data = {'page': 1, 'page_size': 20}
-        schema = ClientSearchSchema(**search_data)
+        # Test valid pagination parameters (explicitly pass as kwargs)
+        schema = ClientSearchSchema(page=1, page_size=20)
         self.assertEqual(schema.page, 1)
         self.assertEqual(schema.page_size, 20)
         
+        # Test invalid pagination parameters
         with self.assertRaises(PydanticValidationError):
             ClientSearchSchema(page=0)
         
