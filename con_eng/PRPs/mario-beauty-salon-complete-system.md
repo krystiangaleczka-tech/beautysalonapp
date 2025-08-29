@@ -23,6 +23,7 @@ Implement a production-ready MVP beauty salon management application that handle
 4. **Progressive Success**: Iterative development with continuous validation.
 5. **Global Rules**: Follow enterprise development system principles, but simplified for MVP.
 6. **DO NOT COMMIT TO GITHUB ANYTHING**
+7. **CHECK TESTS**: After every PHASE retest again all tests for micro-tasks and make sure they pass.
 
 ---
 
