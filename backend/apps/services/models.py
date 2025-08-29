@@ -112,8 +112,13 @@ class ServiceCategory(BaseModel):
             raise ValidationError("A category cannot be its own parent")
         
         # Prevent circular references
-        if self.parent and self in self.parent.get_ancestors():  # type: ignore
-            raise ValidationError("Circular reference detected in category hierarchy")
+        if self.parent:
+            # Check if setting this parent would create a circular reference
+            current = self.parent
+            while current:
+                if current == self:
+                    raise ValidationError("Circular reference detected in category hierarchy")
+                current = current.parent  # type: ignore
         
         # Limit hierarchy depth to 3 levels for MVP
         if self.parent and self.parent.level >= 2:  # type: ignore

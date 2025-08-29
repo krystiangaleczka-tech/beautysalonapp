@@ -1,8 +1,10 @@
 from ninja import Router
+from ninja import Router
 from ninja.pagination import paginate, PageNumberPagination
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 from typing import List, Optional
 import math
 
@@ -23,7 +25,7 @@ router = Router()
 # Health check endpoint
 @router.get("/health")
 def health_check(request):
-    return {"status": "ok", "app": "services"}
+    return {"status": "healthy", "app": "services", "timestamp": timezone.now().isoformat(), "service": "Service Catalog API"}
 
 # Category CRUD endpoints
 @router.post("/categories/", response=CategoryResponseSchema, tags=["Service Categories"])
@@ -33,7 +35,7 @@ def create_category(request, data: CategoryCreateSchema):
     Task 5.5 - Service CRUD APIs implementation.
     """
     try:
-        category_data = data.dict()
+        category_data = data.model_dump()
         category = ServiceCategory.objects.create(**category_data)  # type: ignore
         
         return CategoryResponseSchema(
@@ -79,7 +81,7 @@ def update_category(request, category_id: int, data: CategoryUpdateSchema):
     category = get_object_or_404(ServiceCategory, id=category_id)
     
     try:
-        update_data = data.dict(exclude_unset=True)
+        update_data = data.model_dump(exclude_unset=True)
         for field, value in update_data.items():
             setattr(category, field, value)
         
@@ -165,7 +167,7 @@ def create_service(request, data: ServiceCreateSchema):
     Task 5.5 - Service CRUD APIs implementation.
     """
     try:
-        service_data = data.dict()
+        service_data = data.model_dump()
         service = Service.objects.create(**service_data)  # type: ignore
         
         return ServiceResponseSchema(
@@ -223,7 +225,7 @@ def update_service(request, service_id: int, data: ServiceUpdateSchema):
     service = get_object_or_404(Service, id=service_id)
     
     try:
-        update_data = data.dict(exclude_unset=True)
+        update_data = data.model_dump(exclude_unset=True)
         for field, value in update_data.items():
             setattr(service, field, value)
         

@@ -5,7 +5,7 @@ Provides request/response validation and serialization for the Client management
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, EmailStr, Field, validator
+from pydantic import BaseModel, EmailStr, Field, field_validator, ConfigDict
 import re
 
 
@@ -46,7 +46,8 @@ class ClientCreateSchema(BaseModel):
         description="Additional notes about the client"
     )
     
-    @validator('phone')
+    @field_validator('phone')
+    @classmethod
     def validate_phone(cls, v):
         """Validate phone number format."""
         if v is not None and v.strip():
@@ -60,15 +61,16 @@ class ClientCreateSchema(BaseModel):
             return phone_cleaned
         return v
     
-    @validator('first_name', 'last_name')
+    @field_validator('first_name', 'last_name')
+    @classmethod
     def validate_names(cls, v):
         """Validate name fields are not empty after stripping."""
         if not v or not v.strip():
             raise ValueError('Name cannot be empty')
         return v.strip()
     
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "first_name": "Maria",
                 "last_name": "Rodriguez",
@@ -78,6 +80,7 @@ class ClientCreateSchema(BaseModel):
                 "notes": "Prefers morning appointments"
             }
         }
+    )
 
 
 class ClientUpdateSchema(BaseModel):
@@ -121,7 +124,8 @@ class ClientUpdateSchema(BaseModel):
         description="Additional notes about the client"
     )
     
-    @validator('phone')
+    @field_validator('phone')
+    @classmethod
     def validate_phone(cls, v):
         """Validate phone number format."""
         if v is not None and v.strip():
@@ -135,7 +139,8 @@ class ClientUpdateSchema(BaseModel):
             return phone_cleaned
         return v
     
-    @validator('first_name', 'last_name')
+    @field_validator('first_name', 'last_name')
+    @classmethod
     def validate_names(cls, v):
         """Validate name fields are not empty after stripping."""
         if v is not None:
@@ -144,14 +149,15 @@ class ClientUpdateSchema(BaseModel):
             return v.strip()
         return v
     
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "email": "maria.rodriguez@newemail.com",
                 "phone": "+1987654321",
                 "notes": "Updated preferences: prefers afternoon appointments"
             }
         }
+    )
 
 
 class ClientResponseSchema(BaseModel):
@@ -170,9 +176,9 @@ class ClientResponseSchema(BaseModel):
     created_at: datetime = Field(description="When the client record was created")
     updated_at: datetime = Field(description="When the client record was last updated")
     
-    class Config:
-        from_attributes = True  # Enable ORM mode for Django model conversion
-        json_schema_extra = {
+    model_config = ConfigDict(
+        from_attributes=True,  # Enable ORM mode for Django model conversion
+        json_schema_extra={
             "example": {
                 "id": 1,
                 "first_name": "Maria",
@@ -186,6 +192,7 @@ class ClientResponseSchema(BaseModel):
                 "updated_at": "2024-01-20T14:45:00Z"
             }
         }
+    )
 
 
 class ClientListResponseSchema(BaseModel):
@@ -199,8 +206,8 @@ class ClientListResponseSchema(BaseModel):
     page_size: int = Field(description="Number of clients per page")
     total_pages: int = Field(description="Total number of pages")
     
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "clients": [
                     {
@@ -222,6 +229,7 @@ class ClientListResponseSchema(BaseModel):
                 "total_pages": 8
             }
         }
+    )
 
 
 class ClientSearchSchema(BaseModel):
@@ -257,11 +265,12 @@ class ClientSearchSchema(BaseModel):
         description="Number of results per page (max 100)"
     )
     
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "query": "maria",
                 "page": 1,
                 "page_size": 20
             }
         }
+    )

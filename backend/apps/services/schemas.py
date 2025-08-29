@@ -3,7 +3,7 @@ Service API Schemas for Mario Beauty Salon Management System.
 Implements Pydantic schemas for service categories and services.
 """
 
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator, ConfigDict
 from typing import Optional
 from decimal import Decimal
 from datetime import datetime
@@ -43,7 +43,8 @@ class CategoryCreateSchema(BaseModel):
         description="Order for displaying categories"
     )
     
-    @validator('name')
+    @field_validator('name')
+    @classmethod
     def validate_name(cls, v):
         """Validate category name."""
         if not v or not v.strip():
@@ -82,7 +83,8 @@ class CategoryUpdateSchema(BaseModel):
         description="Display order"
     )
     
-    @validator('name')
+    @field_validator('name')
+    @classmethod
     def validate_name(cls, v):
         """Validate category name."""
         if v is not None and (not v or not v.strip()):
@@ -104,8 +106,7 @@ class CategoryResponseSchema(BaseModel):
     created_at: datetime
     updated_at: datetime
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class ServiceCreateSchema(BaseModel):
@@ -175,14 +176,16 @@ class ServiceCreateSchema(BaseModel):
         description="Order for displaying services within category"
     )
     
-    @validator('name')
+    @field_validator('name')
+    @classmethod
     def validate_name(cls, v):
         """Validate service name."""
         if not v or not v.strip():
             raise ValueError("Service name cannot be empty")
         return v.strip()
     
-    @validator('base_price')
+    @field_validator('base_price')
+    @classmethod
     def validate_price(cls, v):
         """Validate service price."""
         if v < Decimal('1.00') or v > Decimal('1000.00'):
@@ -257,14 +260,16 @@ class ServiceUpdateSchema(BaseModel):
         description="Display order"
     )
     
-    @validator('name')
+    @field_validator('name')
+    @classmethod
     def validate_name(cls, v):
         """Validate service name."""
         if v is not None and (not v or not v.strip()):
             raise ValueError("Service name cannot be empty")
         return v.strip() if v else v
     
-    @validator('base_price')
+    @field_validator('base_price')
+    @classmethod
     def validate_price(cls, v):
         """Validate service price."""
         if v is not None and (v < Decimal('1.00') or v > Decimal('1000.00')):
@@ -292,8 +297,7 @@ class ServiceResponseSchema(BaseModel):
     created_at: datetime
     updated_at: datetime
     
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class ServiceListResponseSchema(BaseModel):

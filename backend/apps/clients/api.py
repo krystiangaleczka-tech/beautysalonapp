@@ -28,7 +28,7 @@ def create_client(request, data: ClientCreateSchema):
     """
     try:
         # Convert schema to dict and create client
-        client_data = data.dict()
+        client_data = data.model_dump()
         client = Client.objects.create(**client_data)  # type: ignore
         
         # Return response with computed fields
@@ -85,7 +85,7 @@ def update_client(request, client_id: int, data: ClientUpdateSchema):
     
     try:
         # Update only provided fields
-        update_data = data.dict(exclude_unset=True)
+        update_data = data.model_dump(exclude_unset=True)
         for field, value in update_data.items():
             setattr(client, field, value)
         
