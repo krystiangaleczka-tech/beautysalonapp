@@ -236,6 +236,60 @@ class StaffProfile(BaseModel):
         """Override save to perform additional validation."""
         self.clean()
         super().save(*args, **kwargs)
+    
+    def is_available_on_day(self, day_of_week):
+        """Check if staff member is available on a specific day of week."""
+        try:
+            working_hours = self.working_hours.get(day_of_week=day_of_week)  # type: ignore
+            return working_hours.is_available
+        except WorkingHours.DoesNotExist:  # type: ignore
+            return False
+    
+    def get_working_hours_for_day(self, day_of_week):
+        """Get working hours for a specific day."""
+        try:
+            return self.working_hours.get(day_of_week=day_of_week)  # type: ignore
+        except WorkingHours.DoesNotExist:  # type: ignore
+            return None
+    
+    def get_available_days(self):
+        """Get list of days when staff member is available."""
+        return self.working_hours.filter(is_available=True).values_list('day_of_week', flat=True)  # type: ignore
+    
+    def get_total_weekly_hours(self):
+        """Calculate total working hours per week."""
+        total_minutes = 0
+        for working_hours in self.working_hours.filter(is_available=True):  # type: ignore
+            total_minutes += working_hours.duration_minutes
+        return total_minutes / 60  # Return hours as float
+    
+    def has_schedule_conflict(self, start_datetime, end_datetime):
+        """Check if there's a schedule conflict for given time period."""
+        # Get day of week (1=Monday, 7=Sunday)
+        day_of_week = start_datetime.isoweekday()
+        
+        # Check if staff is available on this day
+        if not self.is_available_on_day(day_of_week):
+            return True  # Conflict: not available on this day
+        
+        working_hours = self.get_working_hours_for_day(day_of_week)
+        if not working_hours:
+            return True  # Conflict: no working hours defined
+        
+        # Extract time components
+        start_time = start_datetime.time()
+        end_time = end_datetime.time()
+        
+        # Check if requested time is within working hours
+        if start_time < working_hours.start_time or end_time > working_hours.end_time:
+            return True  # Conflict: outside working hours
+        
+        # Check if requested time conflicts with break time
+        if working_hours.break_start_time and working_hours.break_end_time:
+            if not (end_time <= working_hours.break_start_time or start_time >= working_hours.break_end_time):
+                return True  # Conflict: overlaps with break time
+        
+        return False  # No conflict
 
 
 class WorkingHours(BaseModel):
