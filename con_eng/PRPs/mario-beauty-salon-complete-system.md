@@ -22,7 +22,7 @@ Implement a production-ready MVP beauty salon management application that handle
 3. **Validation Loops**: Aim for 90% test coverage with quality gates.
 4. **Progressive Success**: Iterative development with continuous validation.
 5. **Global Rules**: Follow enterprise development system principles, but simplified for MVP.
-6. **Mandatory Git Workflow**: Every completed micro-task MUST be described in your memory for further commit in Git with descriptive message following pattern 'feat: Task X.Y - [Micro-Task Description]', but do not use any git commands.
+6. **DO NOT COMMIT TO GITHUB ANYTHING**
 
 ---
 
