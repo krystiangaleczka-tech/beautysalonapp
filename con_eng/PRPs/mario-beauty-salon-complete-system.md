@@ -1,5 +1,11 @@
 # Mario Beauty Salon Core System PRP v2 - MVP Implementation
 
+**🔍 CONTEXT7 INTEGRATION ENABLED**
+API Key: ctx7sk-704c26ad-7bf3-4e2b-96df-20dcadcdcf4c
+For up-to-date code documentation and examples, use Context7 API when available:
+- Search: `curl -X GET "https://context7.com/api/v1/search?query={library}" -H "Authorization: Bearer ctx7sk-704c26ad-7bf3-4e2b-96df-20dcadcdcf4c"`
+- Get docs: `curl -X GET "https://context7.com/api/v1/{library}?type=json&topic={topic}&tokens=5000" -H "Authorization: Bearer ctx7sk-704c26ad-7bf3-4e2b-96df-20dcadcdcf4c"`
+
 name: "Mario Beauty Salon Core System PRP v2 - MVP Implementation"
 description: |
   Core MVP beauty salon management system implementation for Mario's 4-person salon team 
@@ -264,6 +270,11 @@ beautysalonapp/
 # Database connection pooling with pgbouncer
 # Proper error handling and logging with Sentry
 # CORS configuration for cross-origin requests
+
+# CONTEXT7 INTEGRATION: Use for latest documentation
+# When implementing any library, first check Context7 for current best practices
+# Especially useful for React hooks, Django patterns, and TypeScript examples
+# Fall back to standard documentation only if Context7 limit exceeded
 ```
 
 ## Implementation Blueprint
