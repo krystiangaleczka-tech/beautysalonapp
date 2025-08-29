@@ -1,21 +1,36 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-
-# Virtual Environment
-.venv/
-venv/
-env/
-
-# Node.js
+# Dependencies
 node_modules/
+*/node_modules/
+
+# Build outputs
+dist/
+build/
+*/dist/
+*/build/
 
 # Environment files
 .env
 .env.local
+.env.development
 .env.production
+*/.env
+*/.env.local
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.coverage
+.pytest_cache/
+venv/
+env/
+
+# Database
+*.db
+*.sqlite3
 
 # IDE
 .vscode/
@@ -23,16 +38,10 @@ node_modules/
 *.swp
 *.swo
 
-# macOS
+# OS
 .DS_Store
+Thumbs.db
 
 # Logs
 *.log
-
-# Database
-db.sqlite3
-
-# Build artifacts
-dist/
-build/
-staticfiles/
+logs/
