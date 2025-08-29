@@ -3,7 +3,7 @@ from ninja.pagination import paginate, PageNumberPagination
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.core.exceptions import ValidationError
-from typing import List
+from typing import List, Optional
 import math
 
 from .models import Client
@@ -29,7 +29,7 @@ def create_client(request, data: ClientCreateSchema):
     try:
         # Convert schema to dict and create client
         client_data = data.dict()
-        client = Client.objects.create(**client_data)
+        client = Client.objects.create(**client_data)  # type: ignore
         
         # Return response with computed fields
         return ClientResponseSchema(
@@ -143,14 +143,14 @@ def list_clients(request, page: int = 1, page_size: int = 20):
         page_size = 20
     
     # Get total count
-    total = Client.objects.count()
+    total = Client.objects.count()  # type: ignore
     total_pages = math.ceil(total / page_size)
     
     # Calculate offset
     offset = (page - 1) * page_size
     
     # Get clients for current page
-    clients = Client.objects.all().order_by('last_name', 'first_name')[offset:offset + page_size]
+    clients = Client.objects.all().order_by('last_name', 'first_name')[offset:offset + page_size]  # type: ignore
     
     # Convert to response schemas
     client_list = [
@@ -179,7 +179,7 @@ def list_clients(request, page: int = 1, page_size: int = 20):
 
 
 @router.get("/search/", response=ClientListResponseSchema, tags=["Clients"])
-def search_clients(request, query: str = None, email: str = None, phone: str = None, page: int = 1, page_size: int = 20):
+def search_clients(request, query: Optional[str] = None, email: Optional[str] = None, phone: Optional[str] = None, page: int = 1, page_size: int = 20):
     """
     Search clients by various criteria.
     
@@ -192,14 +192,14 @@ def search_clients(request, query: str = None, email: str = None, phone: str = N
         page_size = 20
     
     # Build query
-    queryset = Client.objects.all()
+    queryset = Client.objects.all()  # type: ignore
     
     if query:
         # Search in first_name, last_name, or email
         queryset = queryset.filter(
-            Q(first_name__icontains=query) |
-            Q(last_name__icontains=query) |
-            Q(email__icontains=query)
+            Q(first_name__icontains=query) |  # type: ignore
+            Q(last_name__icontains=query) |  # type: ignore
+            Q(email__icontains=query)  # type: ignore
         )
     
     if email:
