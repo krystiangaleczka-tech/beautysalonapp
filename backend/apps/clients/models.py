@@ -60,7 +60,7 @@ class Client(BaseModel):
         help_text=_('Additional notes about the client')
     )
     
-    class Meta:
+    class Meta(BaseModel.Meta):
         db_table = 'clients'
         verbose_name = _('Client')
         verbose_name_plural = _('Clients')
