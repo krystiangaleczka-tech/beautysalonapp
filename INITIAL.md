@@ -4,8 +4,6 @@
 <<<<<<< HEAD
 Build a comprehensive beauty salon management application for Mario's 4-person salon team using enterprise-grade technology stack: Django 5.2 LTS with Django-Ninja for high-performance API endpoints, React 18 with TypeScript 5.9 for type-safe frontend development, and PostgreSQL 17 for robust data persistence. 
 =======
-Build a comprehensive beauty salon management application for Mario's 4-person salon team using enterprise-grade technology stack: Django 5.2 LTS with Django-Ninja for high-performance API endpoints, React 19 with TypeScript 5.9 for type-safe frontend development, and PostgreSQL 17 for robust data persistence. 
->>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
 
 The system implements enterprise security with multi-role authentication (owner, manager, stylist, receptionist), Redis 7 clustering for performance optimization, and full containerization via Docker Compose for scalable deployment.
 
@@ -45,7 +43,7 @@ dependencies = [
 ```typescript
 // Modern React Ecosystem
 const techStack = {
-  react: "19.0",
+  react: "18.0",
   typescript: "5.9",
   vite: "5.0+",
   tailwindcss: "3.4+",
@@ -445,8 +443,6 @@ volumes:
 <<<<<<< HEAD
 - React 18: https://react.dev/
 =======
-- React 19: https://react.dev/
->>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
 - TypeScript 5.9: https://www.typescriptlang.org/docs/
 - PostgreSQL 17: https://www.postgresql.org/docs/17/
 - Celery: https://docs.celeryq.dev/en/stable/
