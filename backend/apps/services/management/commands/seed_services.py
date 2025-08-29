@@ -17,20 +17,20 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
         """Execute the seeding command."""
-        self.stdout.write(self.style.SUCCESS('Starting to seed services data...'))
+        self.stdout.write(self.style.SUCCESS('Starting to seed services data...'))  # type: ignore
         
         try:
-            with transaction.atomic():
+            with transaction.atomic():  # type: ignore
                 self._create_categories()
                 self._create_services()
                 
             self.stdout.write(
-                self.style.SUCCESS('Successfully seeded services data!')
+                self.style.SUCCESS('Successfully seeded services data!')  # type: ignore
             )
             
         except Exception as e:
             self.stdout.write(
-                self.style.ERROR(f'Error seeding data: {e}')
+                self.style.ERROR(f'Error seeding data: {e}')  # type: ignore
             )
     
     def _create_categories(self):
