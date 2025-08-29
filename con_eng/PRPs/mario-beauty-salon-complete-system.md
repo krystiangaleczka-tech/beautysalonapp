@@ -293,36 +293,42 @@ Task 1.1 - Create Backend Virtual Environment:
   ACTIVATE: Virtual environment
   VALIDATE: Python 3.11+ available
   CHECK CONSOLE: Run `python --version` and check for errors in console. Fix if any (e.g., install Python if missing).
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 1.2 - Install Backend Dependencies:
   INSTALL: pip install -r requirements/development.txt
   VALIDATE: All packages installed without errors
   TEST: python -c "import django; print(django.VERSION)"
   CHECK CONSOLE: Run the install command and monitor console for errors (e.g., dependency conflicts). Fix by updating requirements.txt if needed.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 1.3 - Install Frontend Dependencies:
   INSTALL: npm install in frontend directory
   VALIDATE: All packages installed without errors
   TEST: npm run type-check
   CHECK CONSOLE: Run `npm install` and check console for errors (e.g., network issues or version mismatches). Fix by retrying or updating package.json.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 1.4 - Configure Environment Variables:
   COPY: .env.example to .env (backend and frontend)
   CONFIGURE: Basic environment variables
   VALIDATE: Environment files exist and readable
   CHECK CONSOLE: Run `cat .env` or open in editor; check for syntax errors. Fix invalid formats.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 1.5 - Validate Django Configuration:
   RUN: python manage.py check
   VALIDATE: No Django configuration errors
   FIX: Any import or configuration issues
   CHECK CONSOLE: Run the command and inspect console output for errors. Fix by correcting settings.py.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 1.6 - Validate Frontend Build:
   RUN: npm run build
   VALIDATE: TypeScript compilation successful
   FIX: Any TypeScript or Vite configuration issues
   CHECK CONSOLE: Run the build command and check for console errors (e.g., TS errors). Fix by resolving type issues.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 # Phase 2: Context Engineering Documentation (COMPLETED)
 Task 2.1 - Create Project Context:
@@ -330,18 +336,21 @@ Task 2.1 - Create Project Context:
   DOCUMENT: Business model and success metrics
   VALIDATE: Context documentation complete
   CHECK CONSOLE: No console involvement; manually review file for completeness. Fix typos or missing sections.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 2.2 - Create Technical Context:
   CREATE: context/TECHNICAL_CONTEXT.md
   DOCUMENT: Architecture decisions and performance requirements
   VALIDATE: Technical specifications complete
   CHECK CONSOLE: No console; manual review. Fix inconsistencies.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 2.3 - Create Feature Context:
   CREATE: context/FEATURE_CONTEXT.md
   DOCUMENT: User journeys and business rules
   VALIDATE: Feature specifications complete
   CHECK CONSOLE: No console; manual review. Fix gaps.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 # Phase 3: Django Backend Foundation (COMPLETED)
 Task 3.1 - Create Core Base Models:
@@ -351,6 +360,7 @@ Task 3.1 - Create Core Base Models:
   IMPLEMENT: BaseModel class combining both
   VALIDATE: Abstract models work correctly
   CHECK CONSOLE: Run `python manage.py makemigrations --dry-run` and check for errors. Fix model definitions.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 3.2 - Create Authentication Models:
   CREATE: apps/authentication/models.py
@@ -359,29 +369,34 @@ Task 3.2 - Create Authentication Models:
   IMPLEMENT: Role-based permissions
   VALIDATE: Custom user model structure
   CHECK CONSOLE: Run `python manage.py makemigrations --dry-run authentication` and fix console errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 3.3 - Configure Custom User Model:
   UPDATE: config/settings/base.py
   SET: AUTH_USER_MODEL = 'authentication.SalonUser'
   VALIDATE: Django recognizes custom user model
   CHECK CONSOLE: Run `python manage.py check` and fix errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 3.4 - Create Authentication Migrations:
   RUN: python manage.py makemigrations authentication
   VALIDATE: Migration files created successfully
   CHECK CONSOLE: Monitor makemigrations output for errors; fix model issues.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 3.5 - Apply Database Migrations:
   RUN: python manage.py migrate
   VALIDATE: Database tables created
   TEST: Custom user model works
   CHECK CONSOLE: Run migrate and fix any SQL errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 3.6 - Test Authentication System:
   CREATE: Superuser with custom model
   TEST: User creation and authentication
   VALIDATE: All authentication features work
   CHECK CONSOLE: Run `python manage.py createsuperuser` and check for errors; fix auth config.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 # Phase 4: Client Management System
 Task 4.1 - Create Client Model Structure:
@@ -391,6 +406,7 @@ Task 4.1 - Create Client Model Structure:
   IMPLEMENT: Basic preference fields (e.g., allergies, preferred contact)
   VALIDATE: Model structure correct
   CHECK CONSOLE: Run `python manage.py makemigrations --dry-run clients` and fix errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 4.2 - Create Client Migrations:
   RUN: python manage.py makemigrations clients
@@ -398,6 +414,7 @@ Task 4.2 - Create Client Migrations:
   RUN: python manage.py migrate
   VALIDATE: Client tables created
   CHECK CONSOLE: Monitor makemigrations and migrate for errors; fix model fields.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 4.3 - Add Client Business Logic:
   CREATE: apps/clients/services.py
@@ -405,6 +422,7 @@ Task 4.3 - Add Client Business Logic:
   IMPLEMENT: Contact validation
   VALIDATE: Business logic functions
   CHECK CONSOLE: Run `python -m pytest apps/clients` (if tests exist) or manual import in shell; fix logic errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 4.4 - Create Client API Schemas:
   CREATE: apps/clients/schemas.py
@@ -413,6 +431,7 @@ Task 4.4 - Create Client API Schemas:
   IMPLEMENT: ClientResponseSchema
   VALIDATE: Schema validation works
   CHECK CONSOLE: Run Python shell import and test schemas; fix Pydantic errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 4.5 - Implement Client CRUD APIs:
   CREATE: apps/clients/api.py
@@ -422,6 +441,7 @@ Task 4.5 - Implement Client CRUD APIs:
   IMPLEMENT: delete_client endpoint
   VALIDATE: CRUD operations work
   CHECK CONSOLE: Run `python manage.py runserver` and test endpoints; fix API errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 4.6 - Add Client Search API:
   IMPLEMENT: search_clients endpoint in apps/clients/api.py
@@ -429,6 +449,7 @@ Task 4.6 - Add Client Search API:
   IMPLEMENT: Pagination support
   VALIDATE: Search functionality works
   CHECK CONSOLE: Test API with curl/postman; fix query errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 4.7 - Integrate Client APIs:
   UPDATE: config/urls.py
@@ -436,6 +457,7 @@ Task 4.7 - Integrate Client APIs:
   TEST: All endpoints via /api/docs/
   VALIDATE: API documentation shows correctly
   CHECK CONSOLE: Run server and access /api/docs/; fix routing errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 4.8 - Test Client Management System:
   CREATE: apps/clients/tests.py
@@ -444,6 +466,7 @@ Task 4.8 - Test Client Management System:
   TEST: Client updates and deletion
   VALIDATE: Complete CRUD workflow with 90% coverage
   CHECK CONSOLE: Run `python -m pytest apps/clients` and fix test failures.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 # Phase 5: Service Catalog Management
 Task 5.1 - Create Service Category Model:
@@ -452,12 +475,14 @@ Task 5.1 - Create Service Category Model:
   IMPLEMENT: Category hierarchy support
   VALIDATE: Category model structure
   CHECK CONSOLE: Run `python manage.py makemigrations --dry-run services` and fix errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 5.2 - Create Service Model:
   IMPLEMENT: Service model with pricing, duration, details
   IMPLEMENT: Service-category relationships
   VALIDATE: Service model relationships
   CHECK CONSOLE: Run makemigrations dry-run; fix relations.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 5.3 - Create Service Migrations:
   RUN: python manage.py makemigrations services
@@ -465,6 +490,7 @@ Task 5.3 - Create Service Migrations:
   RUN: python manage.py migrate
   VALIDATE: Service tables created
   CHECK CONSOLE: Monitor for migration errors; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 5.4 - Create Service API Schemas:
   CREATE: apps/services/schemas.py
@@ -473,6 +499,7 @@ Task 5.4 - Create Service API Schemas:
   IMPLEMENT: CategoryCreateSchema
   VALIDATE: Service schemas work
   CHECK CONSOLE: Test schemas in shell; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 5.5 - Implement Service CRUD APIs:
   CREATE: apps/services/api.py
@@ -480,6 +507,7 @@ Task 5.5 - Implement Service CRUD APIs:
   IMPLEMENT: Category CRUD endpoints
   VALIDATE: Service API operations
   CHECK CONSOLE: Run server and test; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 5.6 - Create Service Data Seeding:
   CREATE: Management command for sample services in apps/services/management/commands/seed_services.py
@@ -487,12 +515,14 @@ Task 5.6 - Create Service Data Seeding:
   RUN: python manage.py seed_services
   VALIDATE: Sample services created
   CHECK CONSOLE: Run command; fix seeding errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 5.7 - Integrate Service APIs:
   UPDATE: config/urls.py with service routes
   TEST: Service APIs via /api/docs/
   VALIDATE: Service management works
   CHECK CONSOLE: Access docs; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 5.8 - Test Service Catalog System:
   CREATE: apps/services/tests.py
@@ -500,6 +530,7 @@ Task 5.8 - Test Service Catalog System:
   TEST: Category management
   VALIDATE: Complete workflow with 90% coverage
   CHECK CONSOLE: Run pytest; fix failures.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 # Phase 6: Staff Management System
 Task 6.1 - Create Staff Profile Model:
@@ -508,6 +539,7 @@ Task 6.1 - Create Staff Profile Model:
   IMPLEMENT: Specializations
   VALIDATE: Staff model structure
   CHECK CONSOLE: Dry-run makemigrations; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 6.2 - Create Staff Schedule Model:
   IMPLEMENT: WorkingHours model
@@ -515,6 +547,7 @@ Task 6.2 - Create Staff Schedule Model:
   IMPLEMENT: Schedule conflict prevention
   VALIDATE: Schedule model relationships
   CHECK CONSOLE: Dry-run; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 6.3 - Create Staff Migrations:
   RUN: python manage.py makemigrations staff
@@ -522,6 +555,7 @@ Task 6.3 - Create Staff Migrations:
   RUN: python manage.py migrate
   VALIDATE: Staff tables created
   CHECK CONSOLE: Monitor; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 6.4 - Implement Staff Business Logic:
   CREATE: apps/staff/services.py
@@ -529,6 +563,7 @@ Task 6.4 - Implement Staff Business Logic:
   IMPLEMENT: Working hours management
   VALIDATE: Staff logic functions
   CHECK CONSOLE: Test in shell; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 6.5 - Create Staff API Schemas:
   CREATE: apps/staff/schemas.py
@@ -536,6 +571,7 @@ Task 6.5 - Create Staff API Schemas:
   IMPLEMENT: ScheduleUpdateSchema
   VALIDATE: Staff API schemas
   CHECK CONSOLE: Shell test; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 6.6 - Implement Staff APIs:
   CREATE: apps/staff/api.py
@@ -544,12 +580,14 @@ Task 6.6 - Implement Staff APIs:
   IMPLEMENT: Availability checker API
   VALIDATE: Staff API operations
   CHECK CONSOLE: Server test; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 6.7 - Integrate Staff APIs:
   UPDATE: config/urls.py with staff routes
   TEST: Staff APIs via /api/docs/
   VALIDATE: Staff management system
   CHECK CONSOLE: Access docs; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 6.8 - Test Staff Management System:
   CREATE: apps/staff/tests.py
@@ -557,6 +595,7 @@ Task 6.8 - Test Staff Management System:
   TEST: Availability checks
   VALIDATE: Complete workflow with 90% coverage
   CHECK CONSOLE: Pytest; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 # Phase 7: Appointment System Core
 Task 7.1 - Create Appointment Model:
@@ -566,6 +605,7 @@ Task 7.1 - Create Appointment Model:
   IMPLEMENT: Database-level conflict prevention (EXCLUDE constraints)
   VALIDATE: Appointment model structure
   CHECK CONSOLE: Dry-run makemigrations; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 7.2 - Create Appointment Migrations:
   RUN: python manage.py makemigrations appointments
@@ -573,6 +613,7 @@ Task 7.2 - Create Appointment Migrations:
   RUN: python manage.py migrate
   VALIDATE: Appointment tables with constraints
   CHECK CONSOLE: Monitor; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 7.3 - Implement Appointment Validation:
   CREATE: apps/appointments/services.py
@@ -581,6 +622,7 @@ Task 7.3 - Implement Appointment Validation:
   IMPLEMENT: Time slot validation
   VALIDATE: Overlap prevention works
   CHECK CONSOLE: Shell test; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 7.4 - Create Appointment API Schemas:
   CREATE: apps/appointments/schemas.py
@@ -588,6 +630,7 @@ Task 7.4 - Create Appointment API Schemas:
   IMPLEMENT: AppointmentUpdateSchema
   VALIDATE: Appointment schemas
   CHECK CONSOLE: Shell; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 7.5 - Implement Appointment APIs:
   CREATE: apps/appointments/api.py
@@ -595,6 +638,7 @@ Task 7.5 - Implement Appointment APIs:
   IMPLEMENT: Appointment management APIs
   VALIDATE: Appointment CRUD operations
   CHECK CONSOLE: Server test; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 7.6 - Create Availability Checker:
   IMPLEMENT: Real-time availability API in apps/appointments/api.py
@@ -602,12 +646,14 @@ Task 7.6 - Create Availability Checker:
   IMPLEMENT: Staff availability integration
   VALIDATE: Available slots return correctly
   CHECK CONSOLE: API test; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 7.7 - Integrate Appointment APIs:
   UPDATE: config/urls.py with appointment routes
   TEST: Appointment APIs via /api/docs/
   VALIDATE: Complete appointment system
   CHECK CONSOLE: Docs access; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 7.8 - Test Appointment System:
   CREATE: apps/appointments/tests.py
@@ -615,6 +661,7 @@ Task 7.8 - Test Appointment System:
   TEST: Availability checks
   VALIDATE: Complete workflow with 90% coverage
   CHECK CONSOLE: Pytest; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 # Phase 8: Notification System (Basic)
 Task 8.1 - Create Notification Models:
@@ -623,6 +670,7 @@ Task 8.1 - Create Notification Models:
   IMPLEMENT: Delivery status tracking
   VALIDATE: Notification model structure
   CHECK CONSOLE: Dry-run; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 8.2 - Create Notification Migrations:
   RUN: python manage.py makemigrations notifications
@@ -630,6 +678,7 @@ Task 8.2 - Create Notification Migrations:
   RUN: python manage.py migrate
   VALIDATE: Notification tables created
   CHECK CONSOLE: Monitor; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 8.3 - Implement Notification Services:
   CREATE: apps/notifications/services.py
@@ -637,6 +686,7 @@ Task 8.3 - Implement Notification Services:
   IMPLEMENT: Basic templates
   VALIDATE: Sending functions work
   CHECK CONSOLE: Shell test; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 8.4 - Integrate Notifications with Appointments:
   UPDATE: apps/appointments/tasks.py
@@ -644,6 +694,7 @@ Task 8.4 - Integrate Notifications with Appointments:
   INTEGRATE: Trigger notifications on booking/create/update
   VALIDATE: Notifications sent on events
   CHECK CONSOLE: Run Celery worker and test; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 8.5 - Test Notification System:
   CREATE: apps/notifications/tests.py
@@ -651,6 +702,7 @@ Task 8.5 - Test Notification System:
   TEST: Integration with appointments
   VALIDATE: Complete workflow with 90% coverage
   CHECK CONSOLE: Pytest; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 # Phase 9: Frontend Foundation
 Task 9.1 - Setup React Router:
@@ -659,6 +711,7 @@ Task 9.1 - Setup React Router:
   IMPLEMENT: Route protection for authenticated areas
   TEST: Navigation between routes works
   CHECK CONSOLE: Run `npm run dev` and browser console; fix JS errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 9.2 - Create API Client Configuration:
   CREATE: src/services/api.ts
@@ -666,6 +719,7 @@ Task 9.2 - Create API Client Configuration:
   IMPLEMENT: Request/response interceptors
   TEST: API connection and error handling
   CHECK CONSOLE: Dev server; fix network errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 9.3 - Setup React Query:
   CREATE: src/hooks/ directory
@@ -673,6 +727,7 @@ Task 9.3 - Setup React Query:
   IMPLEMENT: Mutation hooks for CRUD operations
   TEST: Data fetching and caching works
   CHECK CONSOLE: Browser console; fix query errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 9.4 - Create Base UI Components:
   CREATE: src/components/ui/ directory
@@ -680,6 +735,7 @@ Task 9.4 - Create Base UI Components:
   IMPLEMENT: Loading and error components
   TEST: Components render correctly
   CHECK CONSOLE: Dev; fix render errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 9.5 - Setup Authentication Context:
   CREATE: src/hooks/useAuth.ts
@@ -687,6 +743,7 @@ Task 9.5 - Setup Authentication Context:
   IMPLEMENT: Login/logout functionality
   TEST: Authentication flow works
   CHECK CONSOLE: Test login; fix auth errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 9.6 - Create Layout Components:
   CREATE: src/components/layout/
@@ -694,12 +751,14 @@ Task 9.6 - Create Layout Components:
   IMPLEMENT: Responsive design patterns
   TEST: Layout renders on different screen sizes
   CHECK CONSOLE: Resize browser; fix CSS/JS errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 9.7 - Test Frontend Foundation:
   CREATE: frontend/__tests__/foundation.test.tsx
   TEST: Routing, API client, auth
   VALIDATE: 90% coverage
   CHECK CONSOLE: Run `npm test`; fix test errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 # Phase 10: Appointment Booking Interface
 Task 10.1 - Create Service Selection Component:
@@ -708,6 +767,7 @@ Task 10.1 - Create Service Selection Component:
   IMPLEMENT: Service filtering and search
   TEST: Service selection works correctly
   CHECK CONSOLE: Dev; fix component errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 10.2 - Create Staff Selection Component:
   CREATE: src/components/appointments/StaffSelector.tsx
@@ -715,6 +775,7 @@ Task 10.2 - Create Staff Selection Component:
   IMPLEMENT: Staff specialization filtering
   TEST: Staff selection works correctly
   CHECK CONSOLE: Dev; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 10.3 - Create Date/Time Picker:
   CREATE: src/components/appointments/AppointmentCalendar.tsx
@@ -722,6 +783,7 @@ Task 10.3 - Create Date/Time Picker:
   IMPLEMENT: Time slot selection interface
   TEST: Date/time selection works
   CHECK CONSOLE: Dev; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 10.4 - Create Booking Form:
   CREATE: src/components/appointments/AppointmentBooking.tsx
@@ -729,6 +791,7 @@ Task 10.4 - Create Booking Form:
   IMPLEMENT: Form validation and submission
   TEST: End-to-end booking process
   CHECK CONSOLE: Dev; fix form errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 10.5 - Integrate Booking Components:
   CREATE: src/components/appointments/ directory integration
@@ -736,12 +799,14 @@ Task 10.5 - Integrate Booking Components:
   IMPLEMENT: Booking confirmation flow
   TEST: Complete booking user journey
   CHECK CONSOLE: Dev; fix integration errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 10.6 - Test Appointment Booking Interface:
   CREATE: frontend/__tests__/appointments.test.tsx
   TEST: Booking flow, validations
   VALIDATE: 90% coverage
   CHECK CONSOLE: Npm test; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 # Phase 11: Client Management Interface
 Task 11.1 - Create Client List Component:
@@ -750,6 +815,7 @@ Task 11.1 - Create Client List Component:
   IMPLEMENT: Client filtering options
   TEST: Client browsing functionality
   CHECK CONSOLE: Dev; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 11.2 - Create Client Profile Component:
   CREATE: src/components/clients/ClientProfile.tsx
@@ -757,6 +823,7 @@ Task 11.2 - Create Client Profile Component:
   IMPLEMENT: Appointment history view
   TEST: Client information display
   CHECK CONSOLE: Dev; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 11.3 - Create Client Form Component:
   CREATE: src/components/clients/ClientForm.tsx
@@ -764,6 +831,7 @@ Task 11.3 - Create Client Form Component:
   IMPLEMENT: Form validation and submission
   TEST: Client CRUD operations via UI
   CHECK CONSOLE: Dev; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 11.4 - Integrate Client Management:
   CREATE: src/components/clients/ directory integration
@@ -771,12 +839,14 @@ Task 11.4 - Integrate Client Management:
   IMPLEMENT: Client workflow navigation
   TEST: Complete client management system
   CHECK CONSOLE: Dev; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 11.5 - Test Client Management Interface:
   CREATE: frontend/__tests__/clients.test.tsx
   TEST: CRUD, search
   VALIDATE: 90% coverage
   CHECK CONSOLE: Npm test; fix.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 # Phase 12: Integration and End-to-End Testing
 Task 12.1 - Setup CI/CD Pipelines:
@@ -784,23 +854,27 @@ Task 12.1 - Setup CI/CD Pipelines:
   IMPLEMENT: Automated tests on push
   VALIDATE: Pipeline runs successfully
   CHECK CONSOLE: Git push and check GitHub Actions console; fix yaml errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 12.2 - Perform Integration Testing:
   RUN: docker-compose up -d
   TEST: Full booking flow via API and frontend
   VALIDATE: End-to-end workflows
   CHECK CONSOLE: Docker logs; fix container errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 12.3 - Optimize Performance:
   IMPLEMENT: Basic caching for availability checks
   TEST: API response times <300ms
   VALIDATE: Performance gates
   CHECK CONSOLE: Run performance tests; fix bottlenecks.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 
 Task 12.4 - Deploy to Staging:
   RUN: scripts/deploy.sh staging
   VALIDATE: System available and functional
   CHECK CONSOLE: Monitor deploy script output; fix deployment errors.
+  CHECK CONSOLE UNTIL ERRORS DISAPPEARS
 ```
 
 ### Integration Points
