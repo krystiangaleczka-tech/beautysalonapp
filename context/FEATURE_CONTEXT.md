@@ -2,124 +2,78 @@
 
 ## User Journeys
 
-### Client Booking Journey
-1. **Service Discovery**
-   - Browse available services by category (nails, skincare, podology, eyelashes)
-   - View service descriptions, duration, and pricing
-   - Filter by price range, duration, or therapist preference
-   - Read service reviews and therapist profiles
+### Client Booking Journey (MVP)
+1. **Service Selection**
+   - Browse available services (nails, skincare, podology, eyelashes)
+   - View basic service descriptions and pricing
+   - Select preferred service
 
 2. **Appointment Scheduling**
-   - Select preferred date from calendar widget
-   - View real-time availability slots
-   - Choose specific therapist or "any available"
-   - Select appointment duration and add-ons
-   - Confirm personal details and contact preferences
+   - Choose available date from calendar
+   - Select from available time slots
+   - Choose staff member or "any available"
+   - Confirm booking details
 
 3. **Booking Confirmation**
-   - Receive immediate booking confirmation
-   - Add appointment to personal calendar
-   - Set reminder preferences (SMS, email, push)
-   - Access booking details and modification options
+   - Receive booking confirmation via email
+   - View appointment details
+   - Option to cancel or reschedule
 
-4. **Pre-Appointment**
-   - Receive automated reminder notifications
-   - Complete intake forms or questionnaires
-   - Request appointment modifications if needed
-   - Access salon location and parking information
-
-5. **Post-Appointment**
-   - Rate service experience and therapist
-   - Rebook future appointments with preferred therapist
-   - Access service history and recommendations
-   - Participate in loyalty program activities
-
-### Staff Daily Workflow
-1. **Shift Start**
+### Staff Daily Workflow (MVP)
+1. **Daily Schedule Review**
    - Login to staff dashboard
-   - Review daily schedule and client notes
-   - Check inventory levels for services
-   - Update availability for walk-ins
+   - View today's appointments
+   - Check client information and notes
 
-2. **Client Management**
-   - Access comprehensive client profiles
-   - Update service notes and recommendations
-   - Process payments and tip collection
+2. **Appointment Management**
+   - Mark appointments as completed
+   - Add basic notes about services
+   - Update appointment status
+
+3. **Basic Client Interaction**
+   - View client contact information
+   - Access appointment history
    - Schedule follow-up appointments
 
-3. **Service Delivery**
-   - Mark appointment start/completion
-   - Update service duration if needed
-   - Add photos for before/after documentation
-   - Process product sales and recommendations
-
-4. **Shift End**
-   - Complete daily sales summary
-   - Update inventory usage
-   - Review tomorrow's schedule
-   - Submit time tracking and notes
-
-### Salon Owner Management Journey
+### Salon Owner Management Journey (MVP)
 1. **Daily Operations**
-   - Review daily/weekly revenue dashboard
-   - Monitor staff performance metrics
-   - Manage appointment scheduling conflicts
-   - Process inventory orders and alerts
+   - View daily appointment schedule
+   - Monitor overall booking status
+   - Check staff schedules
 
-2. **Staff Management**
-   - Create staff schedules and vacation management
-   - Track individual performance and commissions
-   - Manage training requirements and certifications
-   - Handle staff communication and announcements
+2. **Client Management**
+   - Add new clients to system
+   - Update client information
+   - View client appointment history
 
-3. **Business Analysis**
-   - Generate financial reports and trends
-   - Analyze client retention and satisfaction
-   - Review service popularity and profitability
-   - Monitor marketing campaign effectiveness
-
-4. **System Administration**
-   - Configure salon settings and policies
+3. **Service Management**
    - Manage service catalog and pricing
-   - Set up promotional campaigns and discounts
-   - Maintain client communication templates
+   - Update staff availability
+   - Basic appointment oversight
 
 ## Business Rules
 
-### Appointment Scheduling Rules
-- **Booking Window**: Clients can book up to 90 days in advance
-- **Cancellation Policy**: 24-hour cancellation notice required for full refund
-- **No-Show Policy**: 2 no-shows result in advance payment requirement
-- **Same-Day Booking**: Available until 2 hours before desired appointment
-- **Double Booking Prevention**: System prevents overlapping appointments automatically
+### Appointment Scheduling Rules (MVP)
+- **Booking Window**: Clients can book up to 30 days in advance
+- **Cancellation Policy**: 24-hour notice required for cancellations
+- **Same-Day Booking**: Available until 2 hours before appointment
+- **Conflict Prevention**: System prevents double-booking automatically
+- **Buffer Time**: 15-minute buffer between appointments
 
-### Service Duration and Pricing
-- **Base Service Times**: Manicure 45min, Pedicure 60min, Facial 90min, Eyelashes 120min
-- **Buffer Time**: 15-minute buffer between appointments for cleanup
-- **Overtime Handling**: Services can extend up to 30 minutes with automatic billing
-- **Group Bookings**: Maximum 4 people for synchronized services
-- **Pricing Tiers**: Regular, Premium, VIP pricing based on therapist experience
+### Service Duration and Pricing (MVP)
+- **Standard Services**: Manicure 45min, Pedicure 60min, Facial 90min, Eyelashes 120min
+- **Fixed Pricing**: Set prices per service type
+- **Payment**: Payment completed at time of service
 
-### Staff Scheduling Rules
-- **Minimum Notice**: 48-hour notice required for schedule changes
-- **Maximum Hours**: 8-hour daily limit, 40-hour weekly limit per staff member
-- **Break Requirements**: 30-minute break required for shifts over 6 hours
-- **Certification Requirements**: Services can only be performed by certified staff
-- **Commission Structure**: 40% commission on services, 15% on product sales
+### Staff Scheduling Rules (MVP)
+- **Working Hours**: 9 AM - 6 PM business hours
+- **Availability**: Staff set their available days/times
+- **Appointment Assignment**: Automatic or manual assignment to available staff
 
-### Payment and Refund Rules
-- **Payment Methods**: Card, cash, mobile payments, gift certificates accepted
-- **Deposit Requirements**: 50% deposit required for services over €100
-- **Refund Timeline**: Refunds processed within 5-7 business days
-- **Tip Handling**: Digital tip processing with 100% to service provider
-- **Late Payment**: Services require payment completion before start
-
-### Data Privacy Rules
-- **Client Consent**: Explicit consent required for photo documentation
-- **Data Retention**: Client data retained for 3 years after last service
-- **Marketing Consent**: Separate consent required for marketing communications
-- **Right to Erasure**: Complete data deletion within 30 days of request
-- **Access Control**: Staff can only access assigned client information
+### Data Privacy Rules (MVP)
+- **Client Data**: Basic contact information and appointment history
+- **Data Retention**: Standard business retention policies
+- **GDPR Compliance**: Basic right to access and delete data
 
 ## API Contracts
 

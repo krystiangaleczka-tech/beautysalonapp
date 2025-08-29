@@ -3,21 +3,19 @@
 ## Business Model
 
 ### Core Business
-**Mario Beauty Salon Management System** - Comprehensive digital platform for managing beauty salon operations including appointments, client relationships, staff management, service delivery, and business analytics.
+**Mario Beauty Salon MVP System** - Essential digital platform for managing beauty salon operations including client management, appointment booking, service catalog, staff scheduling, and basic notifications. Focus on core MVP functionality that reduces manual work by 60%.
 
 ### Value Proposition
-- **For Salon Owners**: Complete business management solution reducing administrative overhead by 60% while increasing revenue through optimized scheduling and client retention
-- **For Staff**: Streamlined workflow management with real-time scheduling, client history access, and performance tracking
-- **For Clients**: Seamless booking experience with service customization, loyalty rewards, and personalized beauty journey tracking
+- **For Salon Owners**: Essential business management tools reducing administrative overhead by 60% while enabling online booking
+- **For Staff**: Streamlined appointment management with clear daily schedules and client information
+- **For Clients**: Simple booking experience with appointment confirmations and basic notifications
 
-### Revenue Streams
-1. **SaaS Subscription Model**: Tiered pricing based on salon size and features
-2. **Transaction Fees**: Small percentage on payment processing
-3. **Premium Features**: Advanced analytics, marketing automation, inventory management
-4. **Integration Marketplace**: Third-party service integrations
+### Revenue Streams (Post-MVP)
+1. **SaaS Subscription Model**: Simple pricing for small to medium salons
+2. **Premium Features**: Advanced features like analytics and inventory management in future releases
 
 ### Market Position
-Enterprise-grade solution for mid to large beauty salons competing with BookingBoss, Fresha, and Boulevard but with superior UX and European market focus.
+MVP solution for small to medium beauty salons focusing on core functionality over complex enterprise features. Foundation for future enhancements.
 
 ## Target Personas
 
@@ -71,33 +69,23 @@ Enterprise-grade solution for mid to large beauty salons competing with BookingB
 
 ## Success Metrics
 
-### Business Metrics
-- **Revenue Impact**: 25% increase in salon revenue within 6 months
-- **Operational Efficiency**: 50% reduction in administrative tasks
-- **Client Retention**: Improve from 65% to 85% annual retention
-- **Staff Productivity**: 30% increase in appointments per staff member
-- **No-Show Reduction**: Decrease from 15% to <5% through automated reminders
+### Business Metrics (MVP Focus)
+- **Operational Efficiency**: 60% reduction in manual appointment scheduling
+- **System Adoption**: 80% daily usage within 30 days of launch
+- **Booking Success**: 95% successful appointment bookings without conflicts
+- **User Satisfaction**: Positive feedback from Mario's team on core workflows
 
-### Technical Metrics
-- **System Uptime**: 99.9% availability (8.76 hours downtime/year max)
-- **Response Time**: <200ms average API response time
-- **User Adoption**: 90% daily active usage within 30 days of onboarding
-- **Data Accuracy**: <0.1% booking conflicts or data inconsistencies
-- **Security Compliance**: 100% GDPR compliance with data processing
+### Technical Metrics (MVP Requirements)
+- **System Uptime**: 99% availability during business hours
+- **Response Time**: <300ms average API response time
+- **Data Accuracy**: Zero appointment conflicts through database constraints
+- **Security**: GDPR compliance with basic data protection
 
-### User Experience Metrics
-- **Booking Completion Rate**: >95% successful appointment bookings
-- **User Satisfaction**: Net Promoter Score >70
-- **Support Tickets**: <2% of users require support monthly
-- **Feature Adoption**: 80% usage of core features within 60 days
-- **Mobile Usage**: 60% of client interactions via mobile devices
-
-### Quality Metrics
-- **Code Coverage**: Minimum 95% test coverage
-- **Bug Rate**: <1 critical bug per 1000 users per month
-- **Performance**: Load time <3 seconds on standard broadband
-- **Accessibility**: WCAG 2.1 AA compliance
-- **Security**: Zero data breaches, quarterly security audits
+### User Experience Metrics (MVP)
+- **Booking Completion**: 95% successful appointment creation
+- **Staff Workflow**: Smooth daily schedule management
+- **Client Communication**: Reliable appointment confirmations
+- **Mobile Usage**: Responsive design works on all devices
 
 ## Competitive Advantage
 

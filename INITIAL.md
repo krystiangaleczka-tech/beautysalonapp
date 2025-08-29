@@ -1,8 +1,15 @@
-# INITIAL.md - MarioBeautyApp Enterprise Development Specification
+
+The system implements enterprise security with multi-role authentication (owner, manager, stylist, receptionist), Redis 7 clustering for performance optimization, and full containerization via Docker Compose for scalable deployment.
+
+**Strategic Vision**: Foundation for AI-powered salon operations with future capabilities for intelligent scheduling optimization, client behavior prediction, and automated business insights generation.
+# INITIAL.md - MarioBeautyApp MVP Development Specification
 
 ## FEATURE OVERVIEW:
-<<<<<<< HEAD
-Build a comprehensive beauty salon management application for Mario's 4-person salon team using enterprise-grade technology stack: Django 5.2 LTS with Django-Ninja for high-performance API endpoints, React 18 with TypeScript 5.9 for type-safe frontend development, and PostgreSQL 17 for robust data persistence. 
+Build an MVP beauty salon management application for Mario's 4-person salon team using proven technology stack: Django 5.2 LTS with Django-Ninja for API endpoints, React 18 with TypeScript 5.9 for frontend development, and PostgreSQL 17 for data persistence.
+
+The system implements core MVP functionality: client management, service catalog, staff scheduling, appointment booking, and basic notifications. Advanced features (AI, analytics, inventory) are deferred to post-MVP phases.
+
+**Strategic Vision**: Solid MVP foundation that reduces manual work by 60% and enables online booking, with architecture ready for future AI and analytics enhancements.
 =======
 
 The system implements enterprise security with multi-role authentication (owner, manager, stylist, receptionist), Redis 7 clustering for performance optimization, and full containerization via Docker Compose for scalable deployment.
@@ -13,17 +20,17 @@ The system implements enterprise security with multi-role authentication (owner,
 
 ## TECHNOLOGY STACK & ARCHITECTURE:
 
-### Backend Infrastructure (Django Ecosystem)
+### Backend Infrastructure (Django MVP Stack)
 ```python
-# Core Framework Stack
-DJANGO_VERSION = "5.2"  # LTS for enterprise stability
-DJANGO_NINJA_VERSION = "1.0+"  # High-performance API framework
-PYDANTIC_VERSION = "2.5+"  # Type validation and serialization
-CELERY_VERSION = "5.3+"  # Distributed task processing
-REDIS_VERSION = "7.2+"  # Caching and message broker
-POSTGRESQL_VERSION = "17"  # Enterprise database
+# Core Framework Stack (MVP Focus)
+DJANGO_VERSION = "5.2"  # LTS for stability
+DJANGO_NINJA_VERSION = "1.0+"  # Modern API framework
+PYDANTIC_VERSION = "2.5+"  # Type validation
+CELERY_VERSION = "5.3+"  # Background tasks (basic notifications)
+REDIS_VERSION = "7.2+"  # Caching and task queue
+POSTGRESQL_VERSION = "17"  # Database
 
-# Production Dependencies
+# MVP Dependencies (Simplified)
 dependencies = [
     "django==5.2",
     "django-ninja>=1.0",
@@ -33,17 +40,15 @@ dependencies = [
     "django-redis>=5.4",
     "django-cors-headers>=4.3",
     "djangorestframework-simplejwt>=5.3",
-    "pillow>=10.1",
     "python-decouple>=3.8",
-    "sentry-sdk[django]>=1.38",
 ]
 ```
 
 ### Frontend Architecture (React + TypeScript)
 ```typescript
-// Modern React Ecosystem
+// React Ecosystem (Stable Versions)
 const techStack = {
-  react: "18.0",
+  react: "18.2",  // Stable version for MVP
   typescript: "5.9",
   vite: "5.0+",
   tailwindcss: "3.4+",
@@ -51,72 +56,72 @@ const techStack = {
   reactHookForm: "7.48+",
   reactRouter: "6.20+",
   lucideReact: "0.300+",
-  recharts: "2.8+",
 };
 ```
 
 ---
 
-## COMPREHENSIVE SYSTEM ARCHITECTURE:
+## MVP SYSTEM ARCHITECTURE:
 
-### 1. Enterprise Authentication & Authorization
+### 1. Basic Authentication & Authorization
 ```python
-# Custom User Model with Role-Based Access Control
+# Simple User Model with Role-Based Access
 class SalonUser(AbstractUser):
     ROLE_CHOICES = [
         ('owner', 'Salon Owner'),
-        ('manager', 'Salon Manager'),
-        ('stylist', 'Hair Stylist'),
-        ('receptionist', 'Receptionist'),
+        ('staff', 'Staff Member'),
+        ('client', 'Client'),
     ]
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
-    phone = models.CharField(max_length=15, validators=[phone_regex])
-    is_active_staff = models.BooleanField(default=True)
-    specialties = models.JSONField(default=list, blank=True)
+    phone = models.CharField(max_length=15, blank=True)
+    is_active_staff = models.BooleanField(default=False)
     
     @property
-    def can_manage_staff(self):
-        return self.role in ['owner', 'manager']
-    
-    @property 
-    def can_access_financials(self):
-        return self.role == 'owner'
+    def can_manage_appointments(self):
+        return self.role in ['owner', 'staff']
 ```
 
-### 2. Advanced Booking System with Conflict Resolution
+### 2. Core Appointment System with Conflict Prevention
 ```python
-# Intelligent Appointment Management
+# Basic Appointment Management
 class AppointmentManager(models.Manager):
-    async def check_availability(self, stylist, start_time, duration):
-        """Enterprise-grade availability checking with buffer time"""
+    def check_availability(self, staff_member, start_time, duration):
+        """Basic availability checking"""
         end_time = start_time + duration
-        buffer_minutes = 15  # Cleanup time between clients
         
-        conflicts = await self.filter(
-            stylist=stylist,
-            start_time__lt=end_time + timedelta(minutes=buffer_minutes),
-            end_time__gt=start_time - timedelta(minutes=buffer_minutes),
-            status__in=['confirmed', 'in_progress']
-        ).aexists()
+        conflicts = self.filter(
+            staff_member=staff_member,
+            start_time__lt=end_time,
+            end_time__gt=start_time,
+            status='confirmed'
+        ).exists()
         
         return not conflicts
 
 class Appointment(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('confirmed', 'Confirmed'),
+        ('completed', 'Completed'),
+        ('cancelled', 'Cancelled'),
+    ]
+    
     client = models.ForeignKey('Client', on_delete=models.CASCADE)
-    stylist = models.ForeignKey('SalonUser', on_delete=models.CASCADE)
+    staff_member = models.ForeignKey('SalonUser', on_delete=models.CASCADE)
     service = models.ForeignKey('Service', on_delete=models.CASCADE)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    notes = models.TextField(blank=True)
     
     objects = AppointmentManager()
     
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=['stylist', 'start_time'],
-                name='no_stylist_double_booking'
+                fields=['staff_member', 'start_time'],
+                name='no_double_booking'
             ),
             models.CheckConstraint(
                 check=models.Q(end_time__gt=models.F('start_time')),
@@ -125,79 +130,61 @@ class Appointment(models.Model):
         ]
 ```
 
-### 3. Enterprise Notification System
+### 3. Basic Notification System
 ```python
-# Multi-Channel Notification Pipeline
+# Simple Notification Pipeline
 @shared_task(bind=True, max_retries=3)
-def send_appointment_confirmation(self, appointment_id):
-    """Reliable notification delivery with retry logic"""
+def send_appointment_notification(self, appointment_id, notification_type):
+    """Basic notification delivery"""
     try:
         appointment = Appointment.objects.select_related(
-            'client', 'stylist', 'service'
+            'client', 'staff_member', 'service'
         ).get(id=appointment_id)
         
-        # SMS notification via Twilio
-        sms_success = send_sms_notification(
-            to=appointment.client.phone,
-            message=render_template('sms/appointment_confirmation.txt', {
-                'appointment': appointment
-            })
-        )
+        # Email notification
+        if notification_type == 'confirmation':
+            send_mail(
+                subject=f'Appointment Confirmed - {appointment.service.name}',
+                message=f'Your appointment is confirmed for {appointment.start_time}',
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[appointment.client.email],
+            )
         
-        # Email notification via SendGrid
-        email_success = send_email_notification(
-            to=appointment.client.email,
-            subject=f"Appointment Confirmed - {appointment.service.name}",
-            template='email/appointment_confirmation.html',
-            context={'appointment': appointment}
-        )
-        
-        # Log delivery status
-        NotificationLog.objects.create(
-            appointment=appointment,
-            sms_status='sent' if sms_success else 'failed',
-            email_status='sent' if email_success else 'failed',
-            sent_at=timezone.now()
-        )
-        
+        # SMS notification (optional)
+        if appointment.client.phone and notification_type in ['reminder', 'confirmation']:
+            # Basic SMS integration would go here
+            pass
+            
     except Exception as exc:
-        logger.error(f"Notification failed: {exc}")
+        logger.error(f'Notification failed: {exc}')
         raise self.retry(countdown=60 * (2 ** self.request.retries))
 ```
 
-### 4. Intelligent Client Management
+### 4. Basic Client Management
 ```python
-# AI-Enhanced Client Profiles
+# Simple Client Profiles
 class Client(models.Model):
     # Basic Information
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
-    phone = models.CharField(max_length=15, validators=[phone_regex])
+    phone = models.CharField(max_length=15, blank=True)
     
-    # Preference Tracking
-    hair_type = models.CharField(max_length=50, blank=True)
-    color_preferences = models.JSONField(default=dict)
-    allergies = models.JSONField(default=list)
-    preferred_stylists = models.ManyToManyField('SalonUser', blank=True)
+    # Basic Preferences
+    allergies = models.TextField(blank=True)
+    notes = models.TextField(blank=True)
     
-    # AI Learning Data
-    service_history = models.JSONField(default=list)
-    satisfaction_scores = models.JSONField(default=list)
-    booking_patterns = models.JSONField(default=dict)
+    # Timestamps
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     
-    # Business Metrics
-    lifetime_value = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    last_visit = models.DateTimeField(null=True, blank=True)
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
     
-    def update_preferences_from_appointment(self, appointment):
-        """Machine learning preference updates"""
-        service_data = {
-            'service_id': appointment.service.id,
-            'stylist_id': appointment.stylist.id,
-            'date': appointment.start_time.isoformat(),
-            'satisfaction': appointment.satisfaction_score
-        }
+    @property
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
+```
         self.service_history.append(service_data)
         self.save()
 ```

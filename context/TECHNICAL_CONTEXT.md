@@ -1,24 +1,60 @@
+#### Frontend: React 19 + TypeScript 5.9 + Tailwind CSS
+**Rationale**:
+- React 19 Server Components for optimal performance
+>>>>>>> 929117a2a2c6f2d0ffff7d4a41d856af7788d504
+- TypeScript ensures type safety for complex booking logic
+- Tailwind CSS enables rapid UI development matching beauty industry aesthetics
+- Component reusability across web and potential mobile apps
+
+#### Database: PostgreSQL 17
+**Rationale**:
+- Advanced constraint system prevents appointment conflicts
+- JSON fields for flexible service customization
+- Robust ACID compliance for financial transactions
+- Excellent performance with complex queries and concurrent users
+- Full-text search for client and service lookups
+
+#### Caching & Background Tasks: Redis 7 + Celery
+**Rationale**:
+- Redis for session management and real-time availability caching
+- Celery for automated appointment reminders and report generation
+- Distributed task processing for scalability
 # TECHNICAL CONTEXT
 
 ## Architecture Decisions
 
 ### System Architecture
-**Microservices Architecture** with API-first design enabling independent scaling and deployment of core business functions.
+**Monolithic MVP Architecture** with API-first design enabling future microservices migration when needed.
 
 ### Technology Stack Selection
 
 #### Backend: Django 5.2 LTS + Django-Ninja
 **Rationale**: 
-- Mature ecosystem with extensive beauty industry integrations
-- Strong ORM for complex appointment scheduling logic
-- Built-in admin interface for rapid salon owner adoption
-- Django-Ninja provides modern OpenAPI documentation
-- Long-term support ensures stability for enterprise clients
+- Proven framework for rapid MVP development
+- Strong ORM for appointment scheduling logic
+- Built-in admin interface for salon management
+- Django-Ninja provides modern API documentation
+- LTS support ensures stability for production use
 
-<<<<<<< HEAD
 #### Frontend: React 18 + TypeScript 5.9 + Tailwind CSS
 **Rationale**:
-- React 18 stable features with excellent ecosystem compatibility
+- React 18 stable features with excellent ecosystem
+- TypeScript ensures type safety for booking logic
+- Tailwind CSS enables rapid UI development
+- Component reusability for future mobile app
+
+#### Database: PostgreSQL 17
+**Rationale**:
+- Excellent constraint system prevents appointment conflicts
+- Robust ACID compliance for booking transactions
+- Good performance for concurrent users
+- Full-text search for client lookups
+
+#### Caching & Background Tasks: Redis 7 + Celery
+**Rationale**:
+- Redis for basic session management and caching
+- Celery for appointment reminder notifications
+- Simple background task processing
 =======
 #### Frontend: React 19 + TypeScript 5.9 + Tailwind CSS
 **Rationale**:
@@ -44,83 +80,56 @@
 
 ### Architecture Patterns
 
-#### Domain-Driven Design (DDD)
-- **Appointment Booking Domain**: Core business logic isolation
-- **Client Management Domain**: Customer relationship and history
-- **Staff Management Domain**: Employee scheduling and performance
-- **Service Catalog Domain**: Treatment definitions and pricing
-- **Payment Processing Domain**: Financial transaction handling
+#### Layered Architecture (MVP Approach)
+- **Presentation Layer**: React components and API endpoints
+- **Business Logic Layer**: Django services and models
+- **Data Access Layer**: Django ORM and PostgreSQL
+- **API Layer**: Django-Ninja for RESTful endpoints
 
-#### CQRS (Command Query Responsibility Segregation)
-- **Write Operations**: Appointment creation, modifications, cancellations
-- **Read Operations**: Schedule views, reports, availability queries
-- **Event Sourcing**: Complete audit trail for compliance and analytics
-
-#### API Gateway Pattern
-- **Rate Limiting**: Prevent system abuse and ensure fair usage
-- **Authentication**: Centralized JWT token management
-- **Request Routing**: Intelligent load balancing across services
-- **Monitoring**: Comprehensive API usage analytics
+#### Simple CRUD Operations
+- **Appointments**: Create, read, update, cancel operations
+- **Clients**: Basic client management with search
+- **Services**: Service catalog management
+- **Staff**: Simple staff scheduling and management
 
 ## Performance Requirements
 
-### Response Time Standards
-- **Critical Operations** (Booking Creation): <100ms 95th percentile
-- **Standard Operations** (Schedule Views): <200ms 95th percentile
-- **Reports & Analytics**: <2 seconds for standard reports
-- **Search Operations**: <300ms for client/service lookups
-- **Payment Processing**: <5 seconds end-to-end
+### Response Time Standards (MVP)
+- **Appointment Booking**: <300ms for booking creation
+- **Schedule Views**: <500ms for daily/weekly schedules
+- **Client Search**: <400ms for client lookups
+- **Service Catalog**: <200ms for service listings
 
-### Scalability Targets
-- **Concurrent Users**: Support 1,000 simultaneous users per salon cluster
-- **Database Performance**: Handle 10,000 appointments per hour during peak
-- **API Throughput**: 5,000 requests per second with horizontal scaling
-- **Storage Scaling**: Linear scaling to 10TB+ for large salon chains
-- **Geographic Distribution**: Multi-region deployment capability
+### Scalability Targets (MVP)
+- **Concurrent Users**: Support 50 simultaneous users
+- **Database Performance**: Handle 100 appointments per hour
+- **API Throughput**: 100 requests per second
+- **Storage**: 10GB initial storage with growth capability
 
-### Availability Requirements
-- **System Uptime**: 99.9% availability (SLA: 8.76 hours downtime/year)
-- **Planned Maintenance**: <4 hours monthly, outside business hours
-- **Disaster Recovery**: <15 minutes RTO, <1 hour RPO
-- **Regional Failover**: Automatic failover within 30 seconds
-- **Data Backup**: Hourly incremental, daily full backups
-
-### Resource Optimization
-- **Memory Usage**: <2GB per service instance under normal load
-- **CPU Utilization**: <70% average across application servers
-- **Database Connections**: Connection pooling with max 100 per instance
-- **CDN Integration**: Static assets cached at edge locations
-- **Compression**: Gzip/Brotli for all API responses >1KB
+### Availability Requirements (MVP)
+- **System Uptime**: 99% availability during business hours
+- **Maintenance Windows**: Weekend maintenance allowed
+- **Data Backup**: Daily automated backups
+- **Recovery**: 4-hour recovery time objective
 
 ## Security Requirements
 
-### Authentication & Authorization
-- **Multi-Factor Authentication**: Required for admin and financial operations
-- **Role-Based Access Control (RBAC)**: Granular permissions by salon role
-- **JWT Token Management**: Secure token generation with 24-hour expiry
-- **Session Management**: Secure session handling with Redis backend
-- **OAuth2 Integration**: Support for Google/Facebook social login
+### Authentication & Authorization (MVP)
+- **JWT Authentication**: Token-based authentication with 24-hour expiry
+- **Role-Based Access**: Simple owner/staff/client role system
+- **Password Security**: Django's built-in password hashing
+- **Session Management**: Secure session handling with Redis
 
-### Data Protection
-- **GDPR Compliance**: Full data subject rights implementation
-- **Data Encryption**: AES-256 encryption for sensitive data at rest
-- **Transport Security**: TLS 1.3 for all client-server communication
-- **Database Encryption**: Transparent data encryption for PostgreSQL
-- **PCI DSS Compliance**: Secure payment card data handling
+### Data Protection (MVP)
+- **GDPR Compliance**: Basic data subject rights (access, delete)
+- **Data Encryption**: HTTPS for all communications
+- **Database Security**: PostgreSQL connection security
+- **Input Validation**: Protect against common web vulnerabilities
 
-### Security Monitoring
-- **Intrusion Detection**: Real-time monitoring for suspicious activities
-- **Audit Logging**: Comprehensive logs for all user actions
-- **Vulnerability Scanning**: Weekly automated security scans
-- **Penetration Testing**: Quarterly third-party security assessments
-- **Security Headers**: Complete OWASP security header implementation
-
-### Privacy Protection
-- **Data Minimization**: Collect only necessary personal information
-- **Right to Erasure**: Automated personal data deletion workflows
-- **Consent Management**: Granular consent tracking and withdrawal
-- **Data Portability**: Client data export in standard formats
-- **Breach Notification**: Automated breach detection and reporting
+### Security Monitoring (MVP)
+- **Audit Logging**: Log important user actions
+- **Error Monitoring**: Track and alert on security-related errors
+- **Basic Security Headers**: OWASP recommended headers
 
 ## Integration Requirements
 
