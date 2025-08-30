@@ -5,6 +5,7 @@ Provides base models with common functionality for all other apps.
 
 from django.db import models
 from django.utils import timezone
+from typing import Any, Tuple
 
 
 class TimeStampedModel(models.Model):
@@ -43,7 +44,7 @@ class SoftDeleteModel(models.Model):
     class Meta:
         abstract = True
 
-    def delete(self, using=None, keep_parents=False):
+    def delete(self, using: Any = None, keep_parents: bool = False) -> Tuple[int, dict]:
         """
         Perform soft delete by setting is_deleted=True and deleted_at=now().
         Override this method to implement hard delete if needed.
@@ -53,7 +54,7 @@ class SoftDeleteModel(models.Model):
         self.save(using=using)
         return 1, {self._meta.label: 1}  # type: ignore # Return expected tuple format
 
-    def restore(self):
+    def restore(self) -> None:
         """
         Restore a soft deleted record by setting is_deleted=False and clearing deleted_at.
         """
@@ -67,11 +68,14 @@ class BaseModel(TimeStampedModel, SoftDeleteModel):
     Base model combining timestamp and soft delete functionality.
     Most salon models should inherit from this unless specific behavior is needed.
     """
+    objects = models.Manager()
+    objects_with_deleted = models.Manager()
+
     class Meta:  # type: ignore
         abstract = True
 
 
-class SalonManager(models.Manager):
+class SalonManager(models.Manager):  # type: ignore
     """
     Custom manager that excludes soft deleted records by default.
     Use objects_with_deleted to include soft deleted records.
@@ -80,10 +84,9 @@ class SalonManager(models.Manager):
         return super().get_queryset().filter(is_deleted=False)
 
 
-class SalonModelMixin:
+class AllObjectsManager(models.Manager):  # type: ignore
     """
-    Mixin to add custom manager to models.
-    Provides both standard manager (excluding deleted) and all_objects manager (including deleted).
+    Custom manager that includes all records, including soft deleted ones.
     """
-    objects = SalonManager()
-    objects_with_deleted = models.Manager()
+    def get_queryset(self):
+        return super().get_queryset()

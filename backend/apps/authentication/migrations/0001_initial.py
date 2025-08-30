@@ -219,7 +219,7 @@ class Migration(migrations.Migration):
                 "verbose_name_plural": "Salon Users",
                 "db_table": "salon_users",
             },
-            bases=(models.Model, apps.core.models.SalonModelMixin),
+            bases=(apps.core.models.BaseModel,),
             managers=[
                 ("objects", django.contrib.auth.models.UserManager()),
             ],
@@ -303,7 +303,7 @@ class Migration(migrations.Migration):
                 "verbose_name_plural": "User Profiles",
                 "db_table": "salon_user_profiles",
             },
-            bases=(models.Model, apps.core.models.SalonModelMixin),
+            bases=(apps.core.models.BaseModel,),
         ),
         migrations.AddIndex(
             model_name="salonuser",

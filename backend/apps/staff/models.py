@@ -9,11 +9,11 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from decimal import Decimal
 
-from apps.core.models import BaseModel, SalonModelMixin
+from apps.core.models import BaseModel
 from apps.authentication.models import SalonUser
 
 
-class Specialization(BaseModel, SalonModelMixin):
+class Specialization(BaseModel):
     """
     Specialization model for tracking staff specialties.
     Allows for structured management of staff capabilities.
@@ -71,7 +71,7 @@ class Specialization(BaseModel, SalonModelMixin):
         return f"{self.name} ({self.get_specialization_type_display()})"  # type: ignore
 
 
-class StaffProfile(BaseModel, SalonModelMixin):
+class StaffProfile(BaseModel):
     """
     Extended staff profile information.
     Complements SalonUser with additional staff-specific details.
@@ -292,7 +292,7 @@ class StaffProfile(BaseModel, SalonModelMixin):
         return False  # No conflict
 
 
-class WorkingHours(BaseModel, SalonModelMixin):
+class WorkingHours(BaseModel):
     """
     Working hours model for staff scheduling.
     Defines when staff members are available to work.

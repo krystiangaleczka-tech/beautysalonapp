@@ -7,10 +7,10 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from apps.core.models import TimeStampedModel, SalonModelMixin
+from apps.core.models import BaseModel
 
 
-class SalonUser(AbstractUser, TimeStampedModel, SalonModelMixin):
+class SalonUser(AbstractUser, BaseModel):
     """
     Custom user model for salon staff and administrators.
     Extends Django's AbstractUser with salon-specific fields and role management.
@@ -180,7 +180,7 @@ class SalonUser(AbstractUser, TimeStampedModel, SalonModelMixin):
             self.save()
 
 
-class UserProfile(TimeStampedModel, SalonModelMixin):
+class UserProfile(BaseModel):
     """
     Extended profile information for salon users.
     Stores additional non-authentication related information.
