@@ -5,6 +5,7 @@ Provides base models with common functionality for all other apps.
 
 from django.db import models
 from django.utils import timezone
+from typing import Tuple, Any
 
 
 class TimeStampedModel(models.Model):
@@ -62,12 +63,24 @@ class SoftDeleteModel(models.Model):
         self.save()
 
 
-class BaseModel(TimeStampedModel, SoftDeleteModel):
+class SalonManager(models.Manager):
     """
-    Base model combining timestamp and soft delete functionality.
-    Most salon models should inherit from this unless specific behavior is needed.
+    Custom manager that excludes soft deleted records by default.
+    Use objects_with_deleted to include soft deleted records.
     """
-    class Meta:  # type: ignore
+    def get_queryset(self):
+        return super().get_queryset().filter(is_deleted=False)
+
+
+class SalonModelMixin(models.Model):
+    """
+    Mixin to add custom manager to models.
+    Provides both standard manager (excluding deleted) and all_objects manager (including deleted).
+    """
+    objects = SalonManager()
+    objects_with_deleted = models.Manager()
+
+    class Meta:
         abstract = True
 
 
@@ -80,10 +93,10 @@ class SalonManager(models.Manager):
         return super().get_queryset().filter(is_deleted=False)
 
 
-class SalonModelMixin:
+class BaseModel(SalonModelMixin, TimeStampedModel, SoftDeleteModel):
     """
-    Mixin to add custom manager to models.
-    Provides both standard manager (excluding deleted) and all_objects manager (including deleted).
+    Base model combining timestamp and soft delete functionality.
+    Most salon models should inherit from this unless specific behavior is needed.
     """
-    objects = SalonManager()
-    objects_with_deleted = models.Manager()
+    class Meta:
+        abstract = True
