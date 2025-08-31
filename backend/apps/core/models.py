@@ -97,5 +97,5 @@ class BaseModel(SalonModelMixin, TimeStampedModel, SoftDeleteModel):
     Base model combining timestamp and soft delete functionality.
     Most salon models should inherit from this unless specific behavior is needed.
     """
-    class Meta:
+    class Meta(SalonModelMixin.Meta, TimeStampedModel.Meta, SoftDeleteModel.Meta):
         abstract = True

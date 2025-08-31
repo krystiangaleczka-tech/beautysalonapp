@@ -115,6 +115,21 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
+                    "is_deleted",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Indicates if the record is soft deleted",
+                    ),
+                ),
+                (
+                    "deleted_at",
+                    models.DateTimeField(
+                        blank=True,
+                        help_text="Date and time when the record was soft deleted",
+                        null=True,
+                    ),
+                ),
+                (
                     "role",
                     models.CharField(
                         choices=[
@@ -248,6 +263,21 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         auto_now=True,
                         help_text="Date and time when the record was last updated",
+                    ),
+                ),
+                (
+                    "is_deleted",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Indicates if the record is soft deleted",
+                    ),
+                ),
+                (
+                    "deleted_at",
+                    models.DateTimeField(
+                        blank=True,
+                        help_text="Date and time when the record was soft deleted",
+                        null=True,
                     ),
                 ),
                 (

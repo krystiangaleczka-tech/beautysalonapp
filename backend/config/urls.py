@@ -8,6 +8,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.shortcuts import redirect
 from ninja import NinjaAPI
 
 from apps.authentication.api import router as auth_router
@@ -60,7 +61,12 @@ def api_root(request):
         }
     }
 
+def redirect_to_docs(request):
+    """Redirect root URL to API documentation"""
+    return redirect('/api/docs/')
+
 urlpatterns = [
+    path('', redirect_to_docs),  # Redirect root to API docs
     path('admin/', admin.site.urls),
     path('api/', api.urls),
 ]
