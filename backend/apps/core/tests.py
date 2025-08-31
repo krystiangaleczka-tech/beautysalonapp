@@ -15,24 +15,40 @@ from apps.core.models import BaseModel, TimeStampedModel, SoftDeleteModel, Salon
 class TestModel(BaseModel):
     """Test model for testing core functionality."""
     
-    class Meta:
+    class Meta(BaseModel.Meta):
         app_label = 'core'
+    
+    # Add this to prevent pytest collection warning
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 # Test model that inherits from TimeStampedModel only
 class TimestampedTestModel(TimeStampedModel):
     """Test model for testing timestamp functionality."""
     
-    class Meta:
+    objects = models.Manager()
+    
+    class Meta(TimeStampedModel.Meta):
         app_label = 'core'
+    
+    # Add this to prevent pytest collection warning
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 # Test model that inherits from SoftDeleteModel only
 class SoftDeleteTestModel(SoftDeleteModel):
     """Test model for testing soft delete functionality."""
     
-    class Meta:
+    objects = models.Manager()
+    
+    class Meta(SoftDeleteModel.Meta):
         app_label = 'core'
+    
+    # Add this to prevent pytest collection warning
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 class BaseModelTestCase(TestCase):
@@ -40,7 +56,7 @@ class BaseModelTestCase(TestCase):
     
     def setUp(self):
         """Set up test data."""
-        self.test_model = TestModel.objects.create()  # type: ignore
+        self.test_model = TestModel.objects.create()
     
     def test_base_model_inheritance(self):
         """Test that BaseModel properly inherits from both TimeStampedModel and SoftDeleteModel."""
@@ -52,7 +68,7 @@ class BaseModelTestCase(TestCase):
     
     def test_base_model_meta_abstract(self):
         """Test that BaseModel is abstract."""
-        self.assertTrue(BaseModel._meta.abstract)
+        self.assertTrue(BaseModel.Meta.abstract)
     
     def test_base_model_has_default_managers(self):
         """Test that BaseModel has the default managers."""
@@ -65,7 +81,7 @@ class TimeStampedModelTestCase(TestCase):
     
     def setUp(self):
         """Set up test data."""
-        self.timestamped_model = TimestampedTestModel.objects.create()  # type: ignore
+        self.timestamped_model = TimestampedTestModel.objects.create()
     
     def test_created_at_auto_set(self):
         """Test that created_at is automatically set on creation."""
@@ -100,7 +116,7 @@ class TimeStampedModelTestCase(TestCase):
     
     def test_timestamped_model_meta_abstract(self):
         """Test that TimeStampedModel is abstract."""
-        self.assertTrue(TimeStampedModel._meta.abstract)
+        self.assertTrue(TimeStampedModel.Meta.abstract)
 
 
 class SoftDeleteModelTestCase(TestCase):
@@ -108,7 +124,7 @@ class SoftDeleteModelTestCase(TestCase):
     
     def setUp(self):
         """Set up test data."""
-        self.soft_delete_model = SoftDeleteTestModel.objects.create()  # type: ignore
+        self.soft_delete_model = SoftDeleteTestModel.objects.create()
     
     def test_soft_delete_default_values(self):
         """Test that soft delete fields have correct default values."""
@@ -152,7 +168,7 @@ class SoftDeleteModelTestCase(TestCase):
     
     def test_soft_delete_model_meta_abstract(self):
         """Test that SoftDeleteModel is abstract."""
-        self.assertTrue(SoftDeleteModel._meta.abstract)
+        self.assertTrue(SoftDeleteModel.Meta.abstract)
 
 
 class ManagerTestCase(TestCase):
