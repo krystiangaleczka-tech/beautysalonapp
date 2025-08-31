@@ -17,6 +17,7 @@ from apps.services.models import Service
 from apps.staff.models import StaffProfile
 
 
+
 class Appointment(BaseModel):
     """
     Appointment model with status tracking and conflict prevention.
@@ -198,8 +199,59 @@ class Appointment(BaseModel):
     
     def save(self, *args, **kwargs):
         """Override save to perform additional validation."""
+        is_new = self.pk is None
+        old_status = None
+        
+        # Get old status if this is an update
+        if not is_new:
+            try:
+                old_instance = Appointment.objects.get(pk=self.pk)
+                old_status = old_instance.status
+            except Appointment.DoesNotExist:
+                pass
+        
         self.clean()
         super().save(*args, **kwargs)
+        
+        # Trigger notifications for new appointments or status changes
+        try:
+            from apps.notifications.services import NotificationService
+            
+            # Prepare appointment details for notification
+            appointment_details = {
+                'service_name': self.service.name,
+                'datetime': self.scheduled_start_time.strftime('%Y-%m-%d %H:%M'),
+                'staff_name': f"{self.staff_member.user.first_name} {self.staff_member.user.last_name}",
+                'duration': self.service.duration_minutes,
+                'price': float(self.price),
+            }
+            
+            # Handle status changes
+            if is_new:
+                # Send confirmation for new appointments
+                NotificationService.send_appointment_confirmation(
+                    client=self.client,
+                    appointment_details=appointment_details
+                )
+            elif old_status != self.status:
+                if (old_status == Appointment.AppointmentStatus.PENDING and 
+                    self.status == Appointment.AppointmentStatus.CONFIRMED):
+                    # Send confirmation when appointment is confirmed
+                    NotificationService.send_appointment_confirmation(
+                        client=self.client,
+                        appointment_details=appointment_details
+                    )
+                elif self.status == Appointment.AppointmentStatus.CANCELLED:
+                    # Add cancellation reason to details
+                    appointment_details['cancellation_reason'] = self.cancellation_reason or "No reason provided"
+                    # Send cancellation notification
+                    NotificationService.send_appointment_cancellation(
+                        client=self.client,
+                        appointment_details=appointment_details
+                    )
+        except (ImportError, AttributeError):
+            # Handle case where notification service is not available
+            pass
     
     @property
     def duration_minutes(self):
